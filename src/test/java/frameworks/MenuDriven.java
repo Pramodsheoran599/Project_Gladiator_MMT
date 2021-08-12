@@ -1,4 +1,4 @@
-package Frameworks;
+package frameworks;
 
 import java.util.Scanner;
 import org.openqa.selenium.WebDriver;

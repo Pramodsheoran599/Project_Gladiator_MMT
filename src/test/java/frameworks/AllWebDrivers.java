@@ -1,4 +1,4 @@
-package Frameworks;
+package frameworks;
 
 
 import org.openqa.selenium.WebDriver;
@@ -12,9 +12,9 @@ public class AllWebDrivers
     public static WebDriver setupDriver(String type)
     {
         // Defining System Property for the Drivers
-        System.setProperty ("webdriver.chrome.driver", "src/test/resources/Drivers/chromedriver.exe"  );
-        System.setProperty ("webdriver.gecko.driver" , "src/test/resources/Drivers/geckodriver.exe"   );
-        System.setProperty ("webdriver.ie.driver"    , "src/test/resources/Drivers/IEDriverServer.exe");
+        System.setProperty ("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe"  );
+        System.setProperty ("webdriver.gecko.driver" , "src/test/resources/drivers/geckodriver.exe"   );
+        System.setProperty ("webdriver.ie.driver"    , "src/test/resources/drivers/IEDriverServer.exe");
 
         WebDriver driver = null;
 
