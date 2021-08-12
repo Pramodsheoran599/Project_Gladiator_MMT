@@ -1,5 +1,8 @@
 package Tests;
 
-public class LoginTests
+import Frameworks.BaseTest;
+
+public class LoginTests extends BaseTest
 {
+
 }
