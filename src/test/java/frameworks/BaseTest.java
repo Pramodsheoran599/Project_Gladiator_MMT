@@ -1,6 +1,7 @@
 package frameworks;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -22,6 +23,14 @@ public class BaseTest
         driver = AllWebDrivers.setupDriver(browserType);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    @AfterMethod
+    public void afterMethod() throws InterruptedException
+    {
+//        driver.close();
     }
 
 //----------------------------------------------------------------------------------------------------------------------
