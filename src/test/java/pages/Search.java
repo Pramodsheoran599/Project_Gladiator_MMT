@@ -64,11 +64,11 @@ public class Search extends BasePage {
 			driver.findElement(multiCityRadioButton).click();
 		}
 	}
-	
+
 	public void selectFromCity() {
 		driver.findElement(searchFromCity).click();
 	}
-	
+
 	public void selectToCity() {
 		driver.findElement(searchToCity).click();
 	}
@@ -134,7 +134,7 @@ public class Search extends BasePage {
 		searchFlights();
 	}
 
-	public void searchMultiCityTripFlights(List<String> cities, List<String> dates) throws Exception {
+	public void searchMultiCityTripFlights(List<String> cities, List<String> dates) {
 		int noOfTrips = cities.size() - 1;
 		selectMultiCityTrip();
 		for (int i = 0; i < noOfTrips; i++) {
