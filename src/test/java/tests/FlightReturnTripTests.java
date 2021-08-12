@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import frameworks.BaseTest;
 import pages.Search;
 
-public class ReturnFlightTests extends BaseTest {
+public class FlightReturnTripTests extends BaseTest {
 	
 	Search search;
 
