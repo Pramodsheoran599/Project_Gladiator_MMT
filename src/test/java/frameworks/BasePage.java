@@ -15,7 +15,8 @@ import java.util.Properties;
 public class BasePage {
 
     protected WebDriver driver;
-    private Properties props;
+    private   Properties props;
+    protected Object_Repository object_repository = new Object_Repository();
 
     protected BasePage(WebDriver driver) {
         this.driver = driver;

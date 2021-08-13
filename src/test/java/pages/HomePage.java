@@ -16,8 +16,6 @@ public class HomePage extends BasePage
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    Object_Repository object_repository = new Object_Repository();
-
     By login_button   = object_repository.getLocator("homepage.login_button");
     By my_profile     = object_repository.getLocator("homepage.my_profile");
     By hey_username   = object_repository.getLocator("homepage.hey_username");

@@ -17,8 +17,7 @@ public class BaseTest
 {
     public WebDriver driver;
     public String browserType = "chrome";
-
-    private Properties props;
+    protected Object_Repository object_repository = new Object_Repository();
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -37,24 +36,6 @@ public class BaseTest
     public void afterTest()
     {
         driver.quit();
-    }
-
-//----------------------------------------------------------------------------------------------------------------------
-
-    protected Properties getProperties() {
-        if (this.props == null) {
-            this.props = new Properties();
-            try {
-                this.props.load(new FileInputStream(Constants.OBJECT_REPO_PATH));
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found at path - " + Constants.OBJECT_REPO_PATH);
-                e.printStackTrace();
-            } catch (IOException e) {
-                System.out.println("Error occurred while reading file, cannot read file - " + Constants.OBJECT_REPO_PATH);
-                e.printStackTrace();
-            }
-        }
-        return this.props;
     }
 }
 //----------------------------------------------------------------------------------------------------------------------

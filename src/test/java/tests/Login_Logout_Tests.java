@@ -16,9 +16,6 @@ import java.util.Set;
 
 public class Login_Logout_Tests extends BaseTest
 {
-
-    Object_Repository object_repository = new Object_Repository();
-
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test (description = "To check if Login Page Opens or not")

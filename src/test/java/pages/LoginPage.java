@@ -15,8 +15,6 @@ public class LoginPage extends BasePage
         super(driver);
     }
 
-    Object_Repository object_repository = new Object_Repository();
-
     By email_mobile_field = object_repository.getLocator("loginPage.email_mobile_field");
     By password_field     = object_repository.getLocator("loginPage.password_field");
     By otp_field          = object_repository.getLocator("loginPage.otp_field");
