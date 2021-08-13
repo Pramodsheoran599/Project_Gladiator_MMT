@@ -17,7 +17,7 @@ public class NewHotel extends BaseTest {
 	
 	HotelPage hotelPage;
 
-	@Test(priority=1)
+	@Test(priority=1)			//for Searching Page
 	public void tc_hotel_book01() throws Exception{
 		driver.get(getProperties().getProperty("url"));
 		
@@ -36,7 +36,7 @@ public class NewHotel extends BaseTest {
 		
 	}
 	
-	@Test(priority=2)
+	@Test(priority=2)		//for Booking Page
 	public void tc_hotel_book02() throws InterruptedException {
 		driver.findElement(By.id("Listing_hotel_1")).click();
 
