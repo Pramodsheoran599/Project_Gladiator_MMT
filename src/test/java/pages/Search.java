@@ -18,23 +18,23 @@ public class Search extends BasePage
         driver.findElement(By.className("userLoggedOut")).click();
     }
 
-    By oneWayTripRadioButton = By.cssSelector("li[data-cy='oneWayTrip']");
-    By roundTripRadioButton = By.cssSelector("li[data-cy='roundTrip']");
-    By multiCityRadioButton = By.cssSelector("li[data-cy='mulitiCityTrip']");
+    By oneWayTripRadioButton = object_repository.getLocator("search.oneWayTripRadioButton");
+    By roundTripRadioButton = object_repository.getLocator("search.roundTripRadioButton");
+    By multiCityRadioButton = object_repository.getLocator("search.multiCityRadioButton");
 
-    By searchFromCity = By.className("searchCity");
-    By searchFromCityInput = By.cssSelector("input[placeholder='From']");
-    By selectFromCityFirstCity = By.id("react-autowhatever-1-section-0-item-0");
+    By searchFromCity = object_repository.getLocator("search.searchFromCity");
+    By searchFromCityInput = object_repository.getLocator("search.searchFromCityInput");
+    By selectFromCityFirstCity = object_repository.getLocator("search.selectFromCityFirstCity");
 
-    By searchToCity = By.className("searchToCity");
-    By searchToCityInput = By.cssSelector("input[placeholder='To']");
-    By searchToCityFirstCity = By.id("react-autowhatever-1-section-0-item-0");
+    By searchToCity = object_repository.getLocator("search.searchToCity");
+    By searchToCityInput = object_repository.getLocator("search.searchToCityInput");
+    By searchToCityFirstCity = object_repository.getLocator("search.searchToCityFirstCity");
 
-    By addAnotherCity = By.cssSelector("button[data-cy='addAnotherCity']");
+    By addAnotherCity = object_repository.getLocator("search.addAnotherCity");
 
-    By sameCityError = By.cssSelector("span[data-cy='sameCityError']");
+    By sameCityError = object_repository.getLocator("search.sameCityError");
 
-    By searchButton = By.cssSelector(".primaryBtn.font24.latoBold.widgetSearchBtn");
+    By searchButton = object_repository.getLocator("search.searchButton");
 
 
     public boolean isSameCityErrorVisible() {
@@ -124,7 +124,7 @@ public class Search extends BasePage
                 .findElements(By.cssSelector("p[class='font14 appendBottom5 blackText']"));
         for (WebElement city : listOfCities) {
             String text = city.getText();
-            if (text.contains(cityName)) {
+            if (text.toLowerCase().contains(cityName.toLowerCase())) {
                 city.click();
                 break;
             }
