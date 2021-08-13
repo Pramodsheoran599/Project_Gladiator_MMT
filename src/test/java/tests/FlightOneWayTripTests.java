@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -22,7 +21,7 @@ public class FlightOneWayTripTests extends BaseTest {
 		search.searchFromCity("Mumbai");
 		search.searchToCity("Mumbai");
 
-		Assert.assertEquals(true, !driver.findElements(By.cssSelector("span[data-cy='sameCityError']")).isEmpty());
+		Assert.assertEquals(true, search.isSameCityErrorVisible());
 	}
 
 	@Test(dependsOnMethods = "tc_flight_search02")
