@@ -25,6 +25,7 @@ public class RoundTripFlight extends BaseTest {
 		
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Set<String> wnd = driver.getWindowHandles();
 		Iterator<String> i = wnd.iterator();
 		 String prntw = i.next();
 		 String popwnd = i.next();
