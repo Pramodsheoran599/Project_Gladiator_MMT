@@ -19,20 +19,15 @@ public class CompleteHotel extends BaseTest {
 		driver.get("https://www.makemytrip.com");
 		driver.findElement(By.className("userLoggedOut")).click();
 		driver.findElement(By.linkText("Hotels")).click();
-		driver.findElement(By.cssSelector("input[placeholder='Enter city/ Hotel/ Area/ Building']")).sendKeys("Mumbai");
-		//driver.findElement(By.id("city")).click();
-	//	driver.findElement(By.id("city")).sendKeys("Mumbai");
-		//driver.findElement(By.xpath("/html/body/div/div/div[2]/div/div/div[2]/div/div[1]/div[1]/div[1]/div/div/div/input")).sendKeys("Mumbai");
-		//WebElement from = driver.findElement(By.id("city"));
-		//from.click();
-		//from.sendKeys("Mumbai");
-		//from.sendKeys(Keys.ARROW_DOWN);
-		//from.sendKeys(Keys.ENTER);
+		driver.findElement(By.id("city")).click();
 		
-		WebElement autoOptions = driver.findElement(By.id("city"));
-		//wait.until(ExpectedConditions.visibilityOf(autoOptions));
-
-		List<WebElement> optionsToSelect = autoOptions.findElements(By.tagName("Mumbai"));
+		WebElement from = driver.findElement(By.cssSelector("input[placeholder='Enter city/ Hotel/ Area/ Building']"));
+		from.click();
+		from.sendKeys("Mumbai");
+		from.sendKeys(Keys.ARROW_DOWN);
+		from.sendKeys(Keys.ENTER);
+		
+		
 		
 		Thread.sleep(5000);
 		
@@ -41,7 +36,7 @@ public class CompleteHotel extends BaseTest {
 
 		driver.findElement(By.id("Listing_hotel_1")).click();
 
-		// Thread.sleep(5000);
+	
 
 		Set<String> Win = driver.getWindowHandles();
 		List<String> allWin = new ArrayList<>(Win);
