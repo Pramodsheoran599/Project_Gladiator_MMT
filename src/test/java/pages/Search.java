@@ -174,6 +174,5 @@ public class Search extends BasePage
             scrollPageVertically(100);
             System.out.println(i);
         }
-        searchFlights();
     }
 }
