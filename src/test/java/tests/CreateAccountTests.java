@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 public class CreateAccountTests extends BaseTest
 {
     @Test(description = "To check Account Creation with Valid Email and OTP")
-    public void tc_signup03() throws InterruptedException
+    public void tc_signup01() throws InterruptedException
     {
         driver.get(object_repository.getProperty("homepage_url"));
         HomePage homePage = new HomePage(driver);
