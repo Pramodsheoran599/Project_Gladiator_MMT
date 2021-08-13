@@ -1,5 +1,4 @@
 package pages;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,7 +32,14 @@ public class Search extends BasePage
 
     By addAnotherCity = By.cssSelector("button[data-cy='addAnotherCity']");
 
+    By sameCityError = By.cssSelector("span[data-cy='sameCityError']");
+
     By searchButton = By.cssSelector(".primaryBtn.font24.latoBold.widgetSearchBtn");
+
+
+    public boolean isSameCityErrorVisible() {
+        return !driver.findElements(sameCityError).isEmpty();
+    }
 
     public void selectDate(String date) {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -97,14 +103,32 @@ public class Search extends BasePage
         waitTillVisibilityOfElement(searchFromCityInput);
         driver.findElement(searchFromCityInput).sendKeys(cityName);
         waitTillVisibilityOfElement(selectFromCityFirstCity);
-        driver.findElement(selectFromCityFirstCity).click();
+
+        List<WebElement> listOfCities = driver
+                .findElements(By.cssSelector("p[class='font14 appendBottom5 blackText']"));
+        for (WebElement city : listOfCities) {
+            String text = city.getText();
+            if (text.contains(cityName)) {
+                city.click();
+                break;
+            }
+        }
     }
 
     public void searchToCity(String cityName) {
         waitTillVisibilityOfElement(searchToCityInput);
         driver.findElement(searchToCityInput).sendKeys(cityName);
         waitTillVisibilityOfElement(searchToCityFirstCity);
-        driver.findElement(searchToCityFirstCity).click();
+
+        List<WebElement> listOfCities = driver
+                .findElements(By.cssSelector("p[class='font14 appendBottom5 blackText']"));
+        for (WebElement city : listOfCities) {
+            String text = city.getText();
+            if (text.contains(cityName)) {
+                city.click();
+                break;
+            }
+        }
     }
 
     public void searchFlights() {

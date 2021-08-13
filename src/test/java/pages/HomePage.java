@@ -1,11 +1,13 @@
 package pages;
 
 import frameworks.BasePage;
-import frameworks.Object_Repository;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+
+//----------------------------------------------------------------------------------------------------------------------
 
 public class HomePage extends BasePage
 {
@@ -67,3 +69,5 @@ public class HomePage extends BasePage
         driver.findElement(hotels_button).click();
     }
 }
+
+//----------------------------------------------------------------------------------------------------------------------

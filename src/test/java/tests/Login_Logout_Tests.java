@@ -1,7 +1,6 @@
 package tests;
 
 import frameworks.BaseTest;
-import frameworks.Object_Repository;
 
 import pages.HomePage;
 import pages.LoginPage;
@@ -33,7 +32,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To Check Login Feature With Blank Username")
     public void tc_login02()
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();
 
@@ -45,7 +44,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To Check Login Feature With Blank Password Entered")
     public void tc_login03()
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();
@@ -61,7 +60,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To Check Login Feature with Valid Email and Valid Password")
     public void tc_login04() throws InterruptedException
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();
@@ -81,7 +80,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To check Login Feature with Invalid Email-ID")
     public void tc_login05()
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();
@@ -96,7 +95,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To check Login Feature with Valid Email-ID and Invalid Password")
     public void tc_login06()
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();
@@ -115,7 +114,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To Check Login Feature with Valid Mobile Number and Valid Password")
     public void tc_login07() throws InterruptedException
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();
@@ -136,7 +135,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To check Login Feature with Invalid Mobile Number")
     public void tc_login08()
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();
@@ -152,7 +151,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To check Login Feature with Valid Mobile Number and Invalid Password")
     public void tc_login09()
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();
@@ -172,7 +171,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To check Login Feature with Valid Mobile Number and valid OTP")
     public void tc_login10() throws Exception
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();
@@ -191,7 +190,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To check Login Feature with Valid Mobile Number and Invalid OTP")
     public void tc_login11() throws Exception
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();
@@ -211,7 +210,7 @@ public class Login_Logout_Tests extends BaseTest
     @Test (description = "To check Login Feature with 'Login with Google' Button")
     public void tc_login12() throws Exception
     {
-        driver.get("https://www.makemytrip.com");
+        driver.get(object_repository.getProperty("homepage_url"));
 
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.goto_login_page();

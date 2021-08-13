@@ -14,8 +14,9 @@ public class FlightReturnTripTests extends BaseTest {
     FlightSearchResultsPage flightSearchResults;
 
     @Test
-    public void tc_return_flight_search_01() {
-        driver.get(getProperties().getProperty("homepage_url"));
+    public void tc_return_flight_search_01() throws InterruptedException
+    {
+        driver.get(object_repository.getProperty("homepage_url"));
         search = new Search(driver);
         search.isOneWaySelected();
         search.selectFromCity();

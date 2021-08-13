@@ -18,7 +18,7 @@ public class FlightMultiCityTests extends BaseTest {
 
     @Test
     public void tc_multicity_flight_select01() {
-        driver.get(getProperties().getProperty("homepage_url"));
+        driver.get(object_repository.getProperty("homepage_url"));
         search = new Search(driver);
 
         List<String> cities = Arrays.asList(new String[] { "Mumbai", "Delhi", "Bengaluru" });

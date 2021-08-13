@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,15 +13,16 @@ public class FlightOneWayTripTests extends BaseTest {
     FlightSearchResultsPage flightSearchResults;
 
     @Test
-    public void tc_flight_search02() {
-        driver.get(getProperties().getProperty("homepage_url"));
+    public void tc_flight_search02() throws InterruptedException
+    {
+        driver.get(object_repository.getProperty("homepage_url"));
         search = new Search(driver);
 
         search.selectFromCity();
         search.searchFromCity("Mumbai");
         search.searchToCity("Mumbai");
 
-        Assert.assertEquals(true, !driver.findElements(By.cssSelector("span[data-cy='sameCityError']")).isEmpty());
+        Assert.assertEquals(true, search.isSameCityErrorVisible());
     }
 
     @Test(dependsOnMethods = "tc_flight_search02")

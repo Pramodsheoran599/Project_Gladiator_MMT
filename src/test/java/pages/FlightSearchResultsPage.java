@@ -11,9 +11,10 @@ public class FlightSearchResultsPage extends BasePage
         super(driver);
     }
 
-    By flights = By.className("fli-list");
+    By flights = By.cssSelector(".listingCard");
 
     public int getCountOfFlights() {
+//		waitTillVisibilityOfElement(flights);
         return driver.findElements(flights).size();
     }
 }
