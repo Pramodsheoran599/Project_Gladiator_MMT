@@ -1,5 +1,6 @@
 package pages;
 
+import frameworks.BasePage;
 import org.openqa.selenium.WebDriver;
 
 import java.text.DateFormat;
@@ -9,7 +10,8 @@ import java.util.Date;
 
 import org.openqa.selenium.By;
 
-public class HotelPage extends BasePage {
+public class HotelPage extends BasePage
+{
 
     public HotelPage(WebDriver driver) {
         super(driver);
