@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="44510" started-at="2021-08-12T15:39:11 IST" finished-at="2021-08-12T15:39:56 IST">
+  <suite name="Default suite" duration-ms="53775" started-at="2021-08-13T09:56:01 IST" finished-at="2021-08-13T09:56:54 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="44510" started-at="2021-08-12T15:39:11 IST" finished-at="2021-08-12T15:39:56 IST">
-      <class name="Pages.HotelSelect">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:Pages.HotelSelect@2c039ac6]" name="beforeTest" is-config="true" duration-ms="4102" started-at="2021-08-12T15:39:11 IST" finished-at="2021-08-12T15:39:15 IST">
+    <test name="Default test" duration-ms="53775" started-at="2021-08-13T09:56:01 IST" finished-at="2021-08-13T09:56:54 IST">
+      <class name="Tests.HotelSelect">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:Tests.HotelSelect@2c039ac6]" name="beforeTest" is-config="true" duration-ms="8823" started-at="2021-08-13T09:56:01 IST" finished-at="2021-08-13T09:56:10 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="tc_hotel_book02()[pri:0, instance:Pages.HotelSelect@2c039ac6]" name="tc_hotel_book02" duration-ms="38650" started-at="2021-08-12T15:39:15 IST" finished-at="2021-08-12T15:39:54 IST">
+        <test-method status="PASS" signature="tc_hotel_book02()[pri:0, instance:Tests.HotelSelect@2c039ac6]" name="tc_hotel_book02" duration-ms="43035" started-at="2021-08-13T09:56:10 IST" finished-at="2021-08-13T09:56:53 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tc_hotel_book02 -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:Pages.HotelSelect@2c039ac6]" name="afterTest" is-config="true" duration-ms="1593" started-at="2021-08-12T15:39:54 IST" finished-at="2021-08-12T15:39:56 IST">
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:Tests.HotelSelect@2c039ac6]" name="afterTest" is-config="true" duration-ms="1763" started-at="2021-08-13T09:56:53 IST" finished-at="2021-08-13T09:56:54 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
-      </class> <!-- Pages.HotelSelect -->
+      </class> <!-- Tests.HotelSelect -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
