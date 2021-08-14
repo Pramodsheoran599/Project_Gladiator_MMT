@@ -216,7 +216,7 @@ public class Login_Logout_Tests extends BaseTest
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (enabled = false, priority = 0, dependsOnMethods = "tc_login04", description = "To check if Logout happens or not")
+    @Test (dependsOnMethods = "tc_login04", description = "To check if Logout happens or not")
     public void tc_logout01()
     {
         homePage.logout();
