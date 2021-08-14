@@ -2,10 +2,11 @@ package tests;
 
 import frameworks.BaseTest;
 
+import org.openqa.selenium.By;
+import org.testng.annotations.BeforeMethod;
 import pages.HomePage;
 import pages.LoginPage;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,208 +16,184 @@ import java.util.Set;
 
 public class Login_Logout_Tests extends BaseTest
 {
+    HomePage homePage;
+    LoginPage loginPage;
+
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To check if Login Page Opens or not")
+    @BeforeMethod
+    public void beforeMethod()
+    {
+        driver.get(object_repository.getProperty("homepage_url"));
+
+        homePage = new HomePage(driver);
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    @Test (priority = 1, description = "To check if Login Page Opens or not")
     public void tc_login01()
     {
-        driver.get(object_repository.getProperty("homepage_url"));
-        HomePage homePage = new HomePage(driver);
-        homePage.goto_login_page();
-
-        Assert.assertTrue(driver.findElement(By.xpath("//span[@class='font26 latoBlack']")).isDisplayed());
+        loginPage = homePage.gotoLoginPage();
+        Assert.assertTrue(loginPage.isDisplayed());
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To Check Login Feature With Blank Username")
+    @Test (priority = 2, description = "To Check Login Feature With Blank Username")
     public void tc_login02()
     {
-        driver.get(object_repository.getProperty("homepage_url"));
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
-
-        Assert.assertFalse(loginPage.check_if_element_is_enabled("continue_button"));
+        loginPage = homePage.gotoLoginPage();
+        Assert.assertFalse(isElementEnabled(loginPage.getContinue_button()));
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To Check Login Feature With Blank Password Entered")
+    @Test (priority = 3, description = "To Check Login Feature With Blank Password Entered")
     public void tc_login03()
     {
-        driver.get(object_repository.getProperty("homepage_url"));
+        loginPage = homePage.gotoLoginPage();
+        loginPage.enterUsername("pramodsheoran599@gmail.com");
+        loginPage.clickContinue();
 
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
-
-        loginPage.enter_username("pramodsheoran599@gmail.com");
-        loginPage.click_continue();
-
-        Assert.assertFalse(loginPage.check_if_element_is_enabled("login_button"));
+        Assert.assertFalse(isElementEnabled(loginPage.getLogin_button()));
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To Check Login Feature with Valid Email and Valid Password")
-    public void tc_login04() throws InterruptedException
+    @Test (priority = 4, description = "To Check Login Feature with Valid Email and Valid Password")
+    public void tc_login04()
     {
-        driver.get(object_repository.getProperty("homepage_url"));
+        loginPage = homePage.gotoLoginPage();
 
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
+        loginPage.enterUsername("pramodsheoran599@gmail.com");
+        loginPage.clickContinue();
 
-        loginPage.enter_username("pramodsheoran599@gmail.com");
-        loginPage.click_continue();
-
-        loginPage.enter_password("Pramod@1234");
+        loginPage.enterPassword("Pramod@1234");
         loginPage.login();
 
-        Thread.sleep(3000);
-        Assert.assertTrue(homePage.is_user_logged_in());
+        Assert.assertTrue(homePage.isUserLoggedIn());
+//        homePage.logout();
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To check Login Feature with Invalid Email-ID")
-    public void tc_login05()
+    @Test (priority = 5, description = "To check Login Feature with Invalid Email-ID")
+    public void tc_login05() throws InterruptedException
     {
-        driver.get(object_repository.getProperty("homepage_url"));
+        loginPage = homePage.gotoLoginPage();
 
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
+        loginPage.enterUsername("mmt.project.team@gmailcom");
+        loginPage.clickContinue();
 
-        loginPage.enter_username("mmt.project.team@gmailcom");
-
-        Assert.assertFalse(loginPage.check_if_element_is_enabled("continue_button"));
+        Assert.assertTrue(isElementDisplayed(loginPage.getError()));
+//        Assert.assertFalse(isElementEnabled(loginPage.getContinue_button()));
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To check Login Feature with Valid Email-ID and Invalid Password")
+    @Test (priority = 6, description = "To check Login Feature with Valid Email-ID and Invalid Password")
     public void tc_login06()
     {
-        driver.get(object_repository.getProperty("homepage_url"));
+        loginPage = homePage.gotoLoginPage();
 
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
+        loginPage.enterUsername("pramodsheoran599@gmail.com");
+        loginPage.clickContinue();
 
-        loginPage.enter_username("pramodsheoran599@gmail.com");
-        loginPage.click_continue();
-
-        loginPage.enter_password("Pramod@134");
+        loginPage.enterPassword("Pramod@134");
         loginPage.login();
 
-        Assert.assertTrue(loginPage.check_if_element_is_displayed("error"));
+        Assert.assertTrue(isElementDisplayed(loginPage.getError()));
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To Check Login Feature with Valid Mobile Number and Valid Password")
-    public void tc_login07() throws InterruptedException
+    @Test (priority = 7, description = "To Check Login Feature with Valid Mobile Number and Valid Password")
+    public void tc_login07()
     {
-        driver.get(object_repository.getProperty("homepage_url"));
+        loginPage = homePage.gotoLoginPage();
 
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
+        loginPage.enterUsername("7021521142");
+        loginPage.clickContinue();
 
-        loginPage.enter_username("7021521142");
-        loginPage.click_continue();
-
-        loginPage.click_login_via_password();
-        loginPage.enter_password("Pramod@1234");
+        loginPage.clickLoginViaPassword();
+        loginPage.enterPassword("Pramod@1234");
         loginPage.login();
 
-        Thread.sleep(10000);                              // Need to Fix Stale Element Exception if Removed
-        Assert.assertTrue(homePage.is_user_logged_in());        // Exception occurs in hey_username element
+        Assert.assertTrue(homePage.isUserLoggedIn());
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To check Login Feature with Invalid Mobile Number")
+    @Test (priority = 8, description = "To check Login Feature with Invalid Mobile Number")
     public void tc_login08()
     {
-        driver.get(object_repository.getProperty("homepage_url"));
+        loginPage = homePage.gotoLoginPage();
 
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
+        loginPage.enterUsername("70215211422");
+        loginPage.clickContinue();
 
-        loginPage.enter_username("70215211422");
-        loginPage.click_continue();
-
-        Assert.assertTrue(loginPage.check_if_element_is_displayed("error"));
+        Assert.assertTrue(isElementDisplayed(loginPage.getError()));
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To check Login Feature with Valid Mobile Number and Invalid Password")
+    @Test (priority = 9, description = "To check Login Feature with Valid Mobile Number and Invalid Password")
     public void tc_login09()
     {
-        driver.get(object_repository.getProperty("homepage_url"));
+        loginPage = homePage.gotoLoginPage();
 
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
+        loginPage.enterUsername("7021521142");
+        loginPage.clickContinue();
 
-        loginPage.enter_username("7021521142");
-        loginPage.click_continue();
-
-        loginPage.click_login_via_password();
-        loginPage.enter_password("Pramod@134");
+        loginPage.clickLoginViaPassword();
+        loginPage.enterPassword("Pramod@134");
         loginPage.login();
 
-        Assert.assertTrue(loginPage.check_if_element_is_displayed("error"));
+        Assert.assertTrue(isElementDisplayed(loginPage.getError()));
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To check Login Feature with Valid Mobile Number and valid OTP")
+    @Test (priority = 10, description = "To check Login Feature with Valid Mobile Number and valid OTP")
     public void tc_login10() throws Exception
     {
-        driver.get(object_repository.getProperty("homepage_url"));
+        loginPage = homePage.gotoLoginPage();
 
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
-
-        loginPage.enter_username("7021521142");
-        loginPage.click_continue();
+        loginPage.enterUsername("7021521142");
+        loginPage.clickContinue();
 
         Thread.sleep(10000);
         loginPage.login();
 
-        Assert.assertTrue(homePage.is_user_logged_in());
+        Assert.assertTrue(homePage.isUserLoggedIn());
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To check Login Feature with Valid Mobile Number and Invalid OTP")
+    @Test (priority = 11, description = "To check Login Feature with Valid Mobile Number and Invalid OTP")
     public void tc_login11() throws Exception
     {
-        driver.get(object_repository.getProperty("homepage_url"));
+        loginPage = homePage.gotoLoginPage();
 
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
+        loginPage.enterUsername("7021521142");
+        loginPage.clickContinue();
 
-        loginPage.enter_username("7021521142");
-        loginPage.click_continue();
-
-        Thread.sleep(1000);
-        loginPage.enter_otp("12356");
+        loginPage.enterOTP("12356");
         loginPage.login();
 
-        Assert.assertTrue(loginPage.check_if_element_is_displayed("error"));
+        Assert.assertTrue(isElementDisplayed(loginPage.getInvalidOtpError()));
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (description = "To check Login Feature with 'Login with Google' Button")
+    @Test (priority = 12, description = "To check Login Feature with 'Login with Google' Button")
     public void tc_login12() throws Exception
     {
-        driver.get(object_repository.getProperty("homepage_url"));
-
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
+        loginPage = homePage.gotoLoginPage();
         String parentWindowId = driver.getWindowHandle();
 
-        loginPage.click_login_via_google();
+        loginPage.clickLoginViaGoogle();
 
         Set<String> allWindowIds = driver.getWindowHandles();
 
@@ -234,18 +211,16 @@ public class Login_Logout_Tests extends BaseTest
 
         Thread.sleep(5000);
         driver.switchTo().window(parentWindowId);
-        Assert.assertTrue(homePage.is_user_logged_in());
+        Assert.assertTrue(homePage.isUserLoggedIn());
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (dependsOnMethods = "tc_login04", description = "To check if Logout happens or not")
+    @Test (enabled = false, priority = 0, dependsOnMethods = "tc_login04", description = "To check if Logout happens or not")
     public void tc_logout01()
     {
-        HomePage homePage = new HomePage(driver);
         homePage.logout();
-
-        Assert.assertFalse(homePage.is_user_logged_in());
+        Assert.assertFalse(homePage.isUserLoggedIn());
     }
 
 //----------------------------------------------------------------------------------------------------------------------

@@ -2,6 +2,7 @@ package frameworks;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,7 +25,7 @@ public class BasePage
 
     protected void waitTillVisibilityOfElement(By element)
     {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
@@ -35,5 +36,17 @@ public class BasePage
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0," + pixels + ")");
     }
-}
 //----------------------------------------------------------------------------------------------------------------------
+
+    public boolean checkIfElementIsEnabled(By locator)
+    {
+        try
+        {
+            return driver.findElement(locator).isDisplayed();
+        }
+        catch (NoSuchElementException e)
+        {
+            return false;
+        }
+    }
+}
