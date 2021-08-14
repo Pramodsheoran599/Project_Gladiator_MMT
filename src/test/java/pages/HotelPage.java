@@ -1,6 +1,8 @@
 package pages;
 
+import com.aventstack.extentreports.reporter.configuration.Theme;
 import frameworks.BasePage;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import java.text.DateFormat;
@@ -18,24 +20,37 @@ public class HotelPage extends BasePage
         driver.findElement(By.className("userLoggedOut")).click();
     }
 
-    By hotels_button = By.cssSelector("a[href='https://www.makemytrip.com/hotels/']");
 
-    By searchFromArea = By.id("city");
-    By searchFromAreaInput = By.cssSelector("input[placeholder='Enter city/ Hotel/ Area/ Building']");
-    By selectFromAreaFirstArea = By.xpath("//p[normalize-space()='Goa, India']");
-    By check_in_date = By.id("checkin");
-    By check_out_date=By.xpath("//span[@data-cy='selectCheckOutDate']");
-    By number_of_guests=By.id("guest");
-    By adult_count = By.className("selected");
-    By click = By.cssSelector("button[data-cy='submitGuest']");
-    By searchButton = By.cssSelector(".primaryBtn.font24.latoBold.widgetSearchBtn");
+    By hotels = object_repository.getLocator("homepage.hotels");
+
+    By searchFromArea = object_repository.getLocator("hotelsPage.searchFromArea");
+    By searchFromAreaInput = object_repository.getLocator("hotelsPage.searchFromAreaInput");
+    By selectFromAreaFirstArea = object_repository.getLocator("hotelsPage.selectFromAreaFirstArea");
+
+    By check_in_date = object_repository.getLocator("hotelsPage.check_in_date");
+    By check_out_date=object_repository.getLocator("hotelsPage.check_out_date");
+
+    By number_of_guests=object_repository.getLocator("hotelsPage.number_of_guests");
+    By adult_count = object_repository.getLocator("hotelsPage.adult_count");
+    By click = object_repository.getLocator("hotelsPage.click");
+
+    By searchButton = object_repository.getLocator("hotelsPage.searchButton");
 
 
+    public void goto_hotels_page() throws InterruptedException
+    {
+        try
+        {
+            if (driver.findElement(By.cssSelector("div[class='autopop__wrap makeFlex column defaultCursor']")).isDisplayed())
+                driver.findElement(object_repository.getLocator("homepage.login_button")).click();
 
+            driver.findElement(hotels).click();
+        }
+        catch (NoSuchElementException e)
+        {
+            driver.findElement(hotels).click();
+        }
 
-
-    public void goto_hotels_page() {
-        driver.findElement(hotels_button).click();
     }
 
     public void selectFromArea() {
@@ -46,9 +61,6 @@ public class HotelPage extends BasePage
         driver.findElement(selectFromAreaFirstArea).click();
 
     }
-
-
-
 
     public void searchFromArea(String cityName) {
         waitTillVisibilityOfElement(searchFromAreaInput);

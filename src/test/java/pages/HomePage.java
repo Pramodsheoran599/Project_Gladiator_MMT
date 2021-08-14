@@ -26,21 +26,31 @@ public class HomePage extends BasePage
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    public LoginPage goto_login_page()
+    public LoginPage gotoLoginPage()
     {
-        driver.findElement(login_button).click();
-        driver.findElement(login_button).click();
+        try
+        {
+            if (driver.findElement(By.cssSelector("div[class='autopop__wrap makeFlex column defaultCursor']")).isDisplayed())
+                driver.findElement(object_repository.getLocator("homepage.loginPopup.login")).click();
+        }
+        catch (NoSuchElementException e)
+        {
+            driver.findElement(login_button).click();
+        }
+
         return new LoginPage(driver);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    public boolean is_user_logged_in()
+    public boolean isUserLoggedIn()
     {
-        try {
+        try
+        {
+            waitTillVisibilityOfElement(hey_username);
             return driver.findElement(hey_username).isDisplayed();
         }
-        catch (NoSuchElementException e) {
+        catch (Exception e) {
             return false;
         }
     }
@@ -68,6 +78,6 @@ public class HomePage extends BasePage
     {
         driver.findElement(hotels_button).click();
     }
-}
 
+}
 //----------------------------------------------------------------------------------------------------------------------

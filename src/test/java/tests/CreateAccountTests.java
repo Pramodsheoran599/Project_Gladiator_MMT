@@ -17,21 +17,20 @@ public class CreateAccountTests extends BaseTest
     {
         driver.get(object_repository.getProperty("homepage_url"));
         HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.goto_login_page();
+        LoginPage loginPage = homePage.gotoLoginPage();
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
 
-        loginPage.enter_username("menoc92605@asmm5.com");
-        loginPage.click_continue();
+        loginPage.enterUsername("menoc92605@asmm5.com");
+        loginPage.clickContinue();
 
-        Thread.sleep(30000);
+        Thread.sleep(30000);                        // Wait For manually entering OTP
         createAccountPage.clickCreate();
 
         createAccountPage.enterFullName("Test");
         createAccountPage.enterPassword("Test@1234");
         createAccountPage.clickSave();
 
-        Thread.sleep(8000);
-        Assert.assertTrue(homePage.is_user_logged_in());
+        Assert.assertTrue(homePage.isUserLoggedIn());
     }
 
 //----------------------------------------------------------------------------------------------------------------------

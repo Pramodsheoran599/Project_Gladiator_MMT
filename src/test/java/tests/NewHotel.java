@@ -11,18 +11,24 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import frameworks.BaseTest;
+import pages.HomePage;
 import pages.HotelPage;
 
 public class NewHotel extends BaseTest {
 
     HotelPage hotelPage;
+    HomePage homepage;
+
 
     @Test(priority=1)			//for Searching Page
-    public void tc_hotel_book01() throws Exception{
+    public void tc_hotel_book01() throws Exception
+    {
         driver.get(object_repository.getProperty("homepage_url"));
 
         hotelPage = new HotelPage(driver);
-        hotelPage.goto_hotels_page();
+        homepage = new HomePage(driver);
+        homepage.goto_hotels_page();
+
         hotelPage.selectFromArea();
         hotelPage.searchFromArea("Goa");
         hotelPage.select_check_in_date();

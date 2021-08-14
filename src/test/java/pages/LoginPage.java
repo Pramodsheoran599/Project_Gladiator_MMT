@@ -14,6 +14,7 @@ public class LoginPage extends BasePage
         super(driver);
     }
 
+    By heading            = object_repository.getLocator("loginPage.heading");
     By email_mobile_field = object_repository.getLocator("loginPage.email_mobile_field");
     By password_field     = object_repository.getLocator("loginPage.password_field");
     By otp_field          = object_repository.getLocator("loginPage.otp_field");
@@ -25,50 +26,75 @@ public class LoginPage extends BasePage
     By login_via_password = object_repository.getLocator("loginPage.login_via_password");
 
     By blank_id_error     = object_repository.getLocator("loginPage.blank_id_error");
+    By invalidOtpError    = object_repository.getLocator("loginPage.invalidOTP");
     By error              = object_repository.getLocator("loginPage.error");
 
-    By login_via_google_button = object_repository.getLocator("loginPage.login_via_google_button");
+    By loginViaGoogleButton = object_repository.getLocator("loginPage.login_via_google_button");
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    public void enter_username(String username)
+    // Getter Methods
+    public By getContinue_button () { return continue_button; }
+    public By getLogin_button    () { return login_button; }
+    public By getBlank_id_error  () { return blank_id_error; }
+    public By getInvalidOtpError () { return invalidOtpError; }
+    public By getError           () { return error; }
+    public By getLoginViaGoogleButton () { return loginViaGoogleButton; }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    public boolean isDisplayed()
+    {
+        return driver.findElement(heading).isDisplayed();
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    public void enterUsername(String username)
     {
         driver.findElement(email_mobile_field).sendKeys(username);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    public void click_continue()
+    public void clickContinue()
     {
-        driver.findElement(continue_button).click();
+        try
+        {
+            driver.findElement(continue_button).click();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    public void enter_password(String password)
+    public void enterPassword(String password)
     {
         driver.findElement(password_field).sendKeys(password);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    public void enter_otp(String otp)
+    public void enterOTP(String otp)
     {
         driver.findElement(otp_field).sendKeys(otp);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    public void click_login_via_password()
+    public void clickLoginViaPassword()
     {
         driver.findElement(login_via_password).click();
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    public void click_login_via_google()
+    public void clickLoginViaGoogle()
     {
-        driver.findElement(login_via_google_button).click();
+        driver.findElement(loginViaGoogleButton).click();
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -77,33 +103,5 @@ public class LoginPage extends BasePage
     {
         driver.findElement(login_button).click();
     }
-
-//----------------------------------------------------------------------------------------------------------------------
-
-    public boolean check_if_element_is_enabled(String elementName)
-    {
-        if (elementName.equalsIgnoreCase("continue_button"))
-            return driver.findElement(continue_button).isEnabled();
-
-        else if (elementName.equalsIgnoreCase("login_button"))
-            return driver.findElement(login_button).isEnabled();
-
-        else
-            System.out.println("Invalid Element Name.");
-            return false;
-    }
-
-//----------------------------------------------------------------------------------------------------------------------
-
-    public boolean check_if_element_is_displayed(String elementName)
-    {
-        if (elementName.equalsIgnoreCase("error"))
-            return driver.findElement(error).isDisplayed();
-
-        else
-            System.out.println("Invalid Element Name.");
-            return false;
-    }
 }
-
 //----------------------------------------------------------------------------------------------------------------------
