@@ -25,6 +25,7 @@ public class RoundTripFlight extends BaseTest {
 		
 		
 		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div/div/div[3]/button")).click();
+		driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div[2]/div/div[2]/label/div/div[2]/div[2]/span")).click();
 		driver.findElement(By.xpath(
 				"/html/body/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div/div[3]/div[1]/div[3]/div/div[2]/button"))
 				.click();

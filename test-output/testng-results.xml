@@ -3,35 +3,33 @@
 <testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="63311" started-at="2021-08-15T00:02:58 IST" finished-at="2021-08-15T00:04:02 IST">
+  <suite name="Default suite" duration-ms="48166" started-at="2021-08-15T00:45:48 IST" finished-at="2021-08-15T00:46:36 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="63311" started-at="2021-08-15T00:02:58 IST" finished-at="2021-08-15T00:04:02 IST">
+    <test name="Default test" duration-ms="48166" started-at="2021-08-15T00:45:48 IST" finished-at="2021-08-15T00:46:36 IST">
       <class name="Tests.RoundTripFlight">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:Tests.RoundTripFlight@2c039ac6]" name="beforeTest" is-config="true" duration-ms="3391" started-at="2021-08-15T00:02:58 IST" finished-at="2021-08-15T00:03:02 IST">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:Tests.RoundTripFlight@2c039ac6]" name="beforeTest" is-config="true" duration-ms="3269" started-at="2021-08-15T00:45:48 IST" finished-at="2021-08-15T00:45:51 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="FAIL" signature="tc_flight_roundtrip01()[pri:0, instance:Tests.RoundTripFlight@2c039ac6]" name="tc_flight_roundtrip01" duration-ms="58674" started-at="2021-08-15T00:03:02 IST" finished-at="2021-08-15T00:04:01 IST">
-          <exception class="org.openqa.selenium.NoSuchElementException">
+        <test-method status="FAIL" signature="tc_flight_roundtrip01()[pri:0, instance:Tests.RoundTripFlight@2c039ac6]" name="tc_flight_roundtrip01" duration-ms="43615" started-at="2021-08-15T00:45:51 IST" finished-at="2021-08-15T00:46:35 IST">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
             <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[3]/button"}
+              <![CDATA[element click intercepted: Element <span class="customRadioBtn">...</span> is not clickable at point (796, 509). Other element would receive the click: <div class="splitviewSticky makeFlex">...</div>
   (Session info: chrome=92.0.4515.131)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
 System info: host: 'ABHINASH', ip: '192.168.1.4', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_291'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 92.0.4515.131, chrome: {chromedriverVersion: 91.0.4472.101 (af52a90bf870..., userDataDir: C:\Users\ABHI\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:55440}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: d04ce7f5b0b7aaebef8b521389ccf86f
-*** Element info: {Using=xpath, value=/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[3]/button}]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 92.0.4515.131, chrome: {chromedriverVersion: 91.0.4472.101 (af52a90bf870..., userDataDir: C:\Users\ABHI\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:60160}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 500a3735cf845e584f614b53460118a5]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[3]/button"}
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <span class="customRadioBtn">...</span> is not clickable at point (796, 509). Other element would receive the click: <div class="splitviewSticky makeFlex">...</div>
   (Session info: chrome=92.0.4515.131)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
 System info: host: 'ABHINASH', ip: '192.168.1.4', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_291'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
+<<<<<<< Updated upstream
 Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 92.0.4515.131, chrome: {chromedriverVersion: 91.0.4472.101 (af52a90bf870..., userDataDir: C:\Users\ABHI\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:55440}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
 Session ID: d04ce7f5b0b7aaebef8b521389ccf86f
 *** Element info: {Using=xpath, value=/html/body/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[3]/button}
@@ -70,6 +68,10 @@ Driver info: org.openqa.selenium.chrome.ChromeDriver
 Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 92.0.4515.131, chrome: {chromedriverVersion: 91.0.4472.101 (af52a90bf870..., userDataDir: C:\Users\ABHI\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:53886}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
 Session ID: 0c7382c73f4db22f1573756a8f8aa826
 >>>>>>> Stashed changes
+=======
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 92.0.4515.131, chrome: {chromedriverVersion: 91.0.4472.101 (af52a90bf870..., userDataDir: C:\Users\ABHI\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:60160}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 500a3735cf845e584f614b53460118a5
+>>>>>>> Stashed changes
 at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
 at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
@@ -81,6 +83,7 @@ at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.ja
 at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
 at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
 at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
@@ -91,6 +94,11 @@ at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285
 at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:166)
 at pages.Search.searchToCity(Search.java:128)
 at tests.FlightReturnTripTests.tc_return_flight_search_01(FlightReturnTripTests.java:24)
+>>>>>>> Stashed changes
+=======
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+at Tests.RoundTripFlight.tc_flight_roundtrip01(RoundTripFlight.java:28)
 >>>>>>> Stashed changes
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
@@ -123,11 +131,15 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+=======
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
+>>>>>>> Stashed changes
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tc_flight_roundtrip01 -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:Tests.RoundTripFlight@2c039ac6]" name="afterTest" is-config="true" duration-ms="1168" started-at="2021-08-15T00:04:01 IST" finished-at="2021-08-15T00:04:02 IST">
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:Tests.RoundTripFlight@2c039ac6]" name="afterTest" is-config="true" duration-ms="1183" started-at="2021-08-15T00:46:35 IST" finished-at="2021-08-15T00:46:36 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
