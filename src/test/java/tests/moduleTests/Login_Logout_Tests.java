@@ -1,4 +1,4 @@
-package tests;
+package tests.moduleTests;
 
 import frameworks.BaseTest;
 
