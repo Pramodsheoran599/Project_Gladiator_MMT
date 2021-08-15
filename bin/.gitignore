@@ -1,0 +1,10 @@
+# Folders
+
+/.settings/
+/target/
+/bin/
+/test-output/
+
+.project
+.classpath
+
