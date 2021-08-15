@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.HotelPage;
@@ -15,14 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+
+
 public class EndToEnd_HotelBooking extends BaseTest
 {
+	
     HomePage homePage;
     LoginPage loginPage;
     HotelPage hotelPage;
+ 
 
 //----------------------------------------------------------------------------------------------------------------------
 
+    
     @Test
     public void login() throws InterruptedException
     {
@@ -45,18 +50,20 @@ public class EndToEnd_HotelBooking extends BaseTest
         driver.findElement(By.id("identifierId")).sendKeys("mmt.project.team@gmail.com");
         driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
         driver.findElement(By.name("password")).sendKeys("Project@Team10");
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
 
         Thread.sleep(5000);
         driver.switchTo().window(parentWindowId);
         Assert.assertTrue(homePage.isUserLoggedIn());
+        
+           
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test (dependsOnMethods = "login")
-    public void searchHotel()
+    public void tc_hotel_search01()
     {
         if (driver.findElement(By.xpath("//*[@id=\"SW\"]/div[1]/div[2]/div[2]/section")).isDisplayed())
             driver.findElement(By.cssSelector("span[data-cy=\"modalClose\"]")).click();
@@ -64,7 +71,16 @@ public class EndToEnd_HotelBooking extends BaseTest
         hotelPage = new HotelPage(driver);
         homePage  = new HomePage(driver);
         homePage.goto_hotels_page();
-
+        
+       
+    }
+    
+//----------------------------------------------------------------------------------------------------------------------
+    
+    @Test (dependsOnMethods = "tc_hotel_search01")
+    public void tc_hotel_search02()
+    
+    {
         hotelPage.selectFromArea();
         hotelPage.searchFromArea("Goa");
         hotelPage.select_check_in_date();
@@ -75,10 +91,15 @@ public class EndToEnd_HotelBooking extends BaseTest
         hotelPage.searchadult_count();
         hotelPage.click_it();
         hotelPage.searchHotels();
+        
+            
     }
 
-    @Test (dependsOnMethods = "searchHotel")
-    public void bookHotel() throws InterruptedException
+//----------------------------------------------------------------------------------------------------------------------
+
+    
+    @Test (dependsOnMethods = "tc_hotel_search02")
+    public void tc_hotel_book01() throws InterruptedException
     {
         driver.findElement(By.id("Listing_hotel_1")).click();
 
@@ -102,5 +123,7 @@ public class EndToEnd_HotelBooking extends BaseTest
         driver.findElement(By.linkText("PAY NOW")).click();
 
         Thread.sleep(5000);
+        
+       
     }
 }

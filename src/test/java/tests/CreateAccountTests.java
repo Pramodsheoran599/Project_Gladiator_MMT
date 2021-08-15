@@ -9,9 +9,27 @@ import pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
 
 public class CreateAccountTests extends BaseTest
 {
+	
+	ExtentTest tc;
+	
+//----------------------------------------------------------------------------------------------------------------------	
+	
+	  @Test
+		public void report()
+		{
+			report=new ExtentReports();
+			report.attachReporter(new ExtentHtmlReporter("NewHotel.html"));
+		}
+	   
+//----------------------------------------------------------------------------------------------------------------------
+
 
 //    @Test (description = "To check Create account fe")
 
@@ -34,6 +52,10 @@ public class CreateAccountTests extends BaseTest
         createAccountPage.clickSave();
 
         Assert.assertTrue(homePage.isUserLoggedIn());
+        
+        tc=report.createTest("tc_signup01");
+  	  	tc.info("valid creds");
+  	  
     }
 
 //----------------------------------------------------------------------------------------------------------------------

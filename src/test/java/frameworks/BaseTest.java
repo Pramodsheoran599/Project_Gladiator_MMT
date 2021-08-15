@@ -10,6 +10,10 @@ import org.testng.annotations.BeforeTest;
 
 import java.util.concurrent.TimeUnit;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
+
 //----------------------------------------------------------------------------------------------------------------------
 
 public class BaseTest
@@ -17,6 +21,7 @@ public class BaseTest
     protected WebDriver driver;
     public String browserType = "chrome";
     protected Object_Repository object_repository = new Object_Repository();
+    public ExtentReports report;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -34,6 +39,7 @@ public class BaseTest
     public void afterTest()
     {
         driver.quit();
+        report.flush();
     }
 
 //----------------------------------------------------------------------------------------------------------------------

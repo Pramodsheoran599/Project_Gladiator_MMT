@@ -7,11 +7,28 @@ import frameworks.BaseTest;
 import pages.FlightSearchResultsPage;
 import pages.Search;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
+
 public class FlightOneWayTripTests extends BaseTest {
 
+	ExtentTest tc;
     Search search;
     FlightSearchResultsPage flightSearchResults;
+    
+//----------------------------------------------------------------------------------------------------------------------    
 
+    @Test
+   	public void report()
+   	{
+   		report=new ExtentReports();
+   		report.attachReporter(new ExtentHtmlReporter("FlightOneWayTripTests.html"));
+   	}
+       
+//----------------------------------------------------------------------------------------------------------------------
+       
     @Test
     public void tc_flight_search02() throws InterruptedException
     {
@@ -23,8 +40,14 @@ public class FlightOneWayTripTests extends BaseTest {
         search.searchToCity("Mumbai");
 
         Assert.assertEquals(true, search.isSameCityErrorVisible());
+        
+        tc=report.createTest("tc_flight_search_02");
+  	  	tc.info("valid creds");
     }
-
+    
+//----------------------------------------------------------------------------------------------------------------------
+    
+   
     @Test(dependsOnMethods = "tc_flight_search02")
     public void tc_flight_search01() {
 
@@ -32,5 +55,8 @@ public class FlightOneWayTripTests extends BaseTest {
         flightSearchResults = new FlightSearchResultsPage(driver);
 
         Assert.assertTrue(flightSearchResults.getCountOfFlights() > 0);
+
+        tc=report.createTest("tc_flight_search_01");
+  	  	tc.info("valid creds");
     }
 }
