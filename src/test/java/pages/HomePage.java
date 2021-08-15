@@ -76,7 +76,18 @@ public class HomePage extends BasePage
 
     public void goto_hotels_page()
     {
-        driver.findElement(hotels_button).click();
+
+        try
+        {
+            if (driver.findElement(By.cssSelector("div[class='autopop__wrap makeFlex column defaultCursor']")).isDisplayed())
+                driver.findElement(object_repository.getLocator("homepage.login_button")).click();
+
+            driver.findElement(hotels_button).click();
+        }
+        catch (NoSuchElementException e)
+        {
+            driver.findElement(hotels_button).click();
+        }
     }
 
 }

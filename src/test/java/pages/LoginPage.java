@@ -14,32 +14,30 @@ public class LoginPage extends BasePage
         super(driver);
     }
 
-    By heading            = object_repository.getLocator("loginPage.heading");
-    By email_mobile_field = object_repository.getLocator("loginPage.email_mobile_field");
-    By password_field     = object_repository.getLocator("loginPage.password_field");
-    By otp_field          = object_repository.getLocator("loginPage.otp_field");
+    By heading          = object_repository.getLocator ("loginPage.heading");
+    By emailMobileField = object_repository.getLocator ("loginPage.emailMobileField");
+    By passwordField    = object_repository.getLocator ("loginPage.passwordField");
+    By otpField         = object_repository.getLocator ("loginPage.otpField");
 
-    By continue_button    = object_repository.getLocator("loginPage.continue_button");
-    By login_button       = object_repository.getLocator("loginPage.login_button");
+    By continueButton   = object_repository.getLocator ("loginPage.continueButton");
+    By loginButton      = object_repository.getLocator ("loginPage.loginButton");
 
-    By login_via_otp      = object_repository.getLocator("loginPage.login_via_otp");
-    By login_via_password = object_repository.getLocator("loginPage.login_via_password");
+    By loginViaPassword = object_repository.getLocator ("loginPage.loginViaPassword");
 
-    By blank_id_error     = object_repository.getLocator("loginPage.blank_id_error");
-    By invalidOtpError    = object_repository.getLocator("loginPage.invalidOTP");
-    By error              = object_repository.getLocator("loginPage.error");
+    By invalidIdError   = object_repository.getLocator("loginPage.invalidIdError");
+    By invalidOtpError  = object_repository.getLocator("loginPage.invalidOTP");
+    By error            = object_repository.getLocator("loginPage.error");
 
-    By loginViaGoogleButton = object_repository.getLocator("loginPage.login_via_google_button");
+    By loginViaGoogleButton = object_repository.getLocator("loginPage.loginViaGoogleButton");
 
 //----------------------------------------------------------------------------------------------------------------------
 
     // Getter Methods
-    public By getContinue_button () { return continue_button; }
-    public By getLogin_button    () { return login_button; }
-    public By getBlank_id_error  () { return blank_id_error; }
-    public By getInvalidOtpError () { return invalidOtpError; }
-    public By getError           () { return error; }
-    public By getLoginViaGoogleButton () { return loginViaGoogleButton; }
+    public By getContinue_button      () { return continueButton; }
+    public By getLogin_button         () { return loginButton; }
+    public By getInvalidIdError       () { return invalidIdError; }
+    public By getInvalidOtpError      () { return invalidOtpError; }
+    public By getError                () { return error; }
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -52,7 +50,7 @@ public class LoginPage extends BasePage
 
     public void enterUsername(String username)
     {
-        driver.findElement(email_mobile_field).sendKeys(username);
+        driver.findElement(emailMobileField).sendKeys(username);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -61,7 +59,7 @@ public class LoginPage extends BasePage
     {
         try
         {
-            driver.findElement(continue_button).click();
+            driver.findElement(continueButton).click();
         }
         catch (Exception e)
         {
@@ -73,21 +71,21 @@ public class LoginPage extends BasePage
 
     public void enterPassword(String password)
     {
-        driver.findElement(password_field).sendKeys(password);
+        driver.findElement(passwordField).sendKeys(password);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
     public void enterOTP(String otp)
     {
-        driver.findElement(otp_field).sendKeys(otp);
+        driver.findElement(otpField).sendKeys(otp);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
     public void clickLoginViaPassword()
     {
-        driver.findElement(login_via_password).click();
+        driver.findElement(loginViaPassword).click();
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -101,7 +99,7 @@ public class LoginPage extends BasePage
 
     public void login()
     {
-        driver.findElement(login_button).click();
+        driver.findElement(loginButton).click();
     }
 }
 //----------------------------------------------------------------------------------------------------------------------

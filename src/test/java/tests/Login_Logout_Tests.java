@@ -61,8 +61,22 @@ public class Login_Logout_Tests extends BaseTest
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (priority = 4, description = "To Check Login Feature with Valid Email and Valid Password")
+    @Test (priority = 4, description = "To check Login Feature with Invalid Email-ID")
     public void tc_login04()
+    {
+        loginPage = homePage.gotoLoginPage();
+
+        loginPage.enterUsername("mmt.project.team@gmailcom");
+        driver.findElement(By.className("modalMain")).click();
+
+        Assert.assertTrue(isElementDisplayed(loginPage.getInvalidIdError()));
+        Assert.assertFalse(isElementEnabled(loginPage.getContinue_button()));
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    @Test (priority = 5, description = "To Check Login Feature with Valid Email and Valid Password")
+    public void tc_login05()
     {
         loginPage = homePage.gotoLoginPage();
 
@@ -73,21 +87,6 @@ public class Login_Logout_Tests extends BaseTest
         loginPage.login();
 
         Assert.assertTrue(homePage.isUserLoggedIn());
-//        homePage.logout();
-    }
-
-//----------------------------------------------------------------------------------------------------------------------
-
-    @Test (priority = 5, description = "To check Login Feature with Invalid Email-ID")
-    public void tc_login05() throws InterruptedException
-    {
-        loginPage = homePage.gotoLoginPage();
-
-        loginPage.enterUsername("mmt.project.team@gmailcom");
-        loginPage.clickContinue();
-
-        Assert.assertTrue(isElementDisplayed(loginPage.getError()));
-//        Assert.assertFalse(isElementEnabled(loginPage.getContinue_button()));
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -163,16 +162,17 @@ public class Login_Logout_Tests extends BaseTest
         loginPage.enterUsername("7021521142");
         loginPage.clickContinue();
 
-        Thread.sleep(10000);
+        Thread.sleep(30000);
         loginPage.login();
 
         Assert.assertTrue(homePage.isUserLoggedIn());
+        homePage.logout();
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test (priority = 11, description = "To check Login Feature with Valid Mobile Number and Invalid OTP")
-    public void tc_login11() throws Exception
+    public void tc_login11()
     {
         loginPage = homePage.gotoLoginPage();
 
@@ -216,7 +216,7 @@ public class Login_Logout_Tests extends BaseTest
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    @Test (dependsOnMethods = "tc_login04", description = "To check if Logout happens or not")
+    @Test (dependsOnMethods = "tc_login05", description = "To check if Logout happens or not")
     public void tc_logout01()
     {
         homePage.logout();

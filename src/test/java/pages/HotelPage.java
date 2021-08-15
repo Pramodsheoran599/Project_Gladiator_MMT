@@ -17,7 +17,6 @@ public class HotelPage extends BasePage
 
     public HotelPage(WebDriver driver) {
         super(driver);
-        driver.findElement(By.className("userLoggedOut")).click();
     }
 
 

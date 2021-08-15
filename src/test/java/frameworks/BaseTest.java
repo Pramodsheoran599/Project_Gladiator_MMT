@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import pages.HomePage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,10 +14,9 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest
 {
-    public WebDriver driver;
+    protected WebDriver driver;
     public String browserType = "chrome";
     protected Object_Repository object_repository = new Object_Repository();
-//    protected WebDriverWait wait = new WebDriverWait(driver, 10);
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -44,8 +42,9 @@ public class BaseTest
     {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-
     }
+
+//----------------------------------------------------------------------------------------------------------------------
 
     public boolean isElementEnabled(By locator)
     {
@@ -59,6 +58,7 @@ public class BaseTest
         }
     }
 
+//----------------------------------------------------------------------------------------------------------------------
 
     public boolean isElementDisplayed(By locator)
     {
@@ -68,10 +68,10 @@ public class BaseTest
         }
         catch (NoSuchElementException e)
         {
+            System.out.println(locator + " : Not Found");
             return false;
         }
     }
-
 }
 //----------------------------------------------------------------------------------------------------------------------
 

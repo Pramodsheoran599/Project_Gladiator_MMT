@@ -7,7 +7,6 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import frameworks.BaseTest;
@@ -32,9 +31,9 @@ public class NewHotel extends BaseTest {
         hotelPage.selectFromArea();
         hotelPage.searchFromArea("Goa");
         hotelPage.select_check_in_date();
-        hotelPage.selectDates("13-08-2021");
+        hotelPage.selectDates("17-08-2021");
         hotelPage.select_check_out_date();
-        hotelPage.selectDates("16-08-2021");
+        hotelPage.selectDates("20-08-2021");
         hotelPage.select_number_of_guests();
         hotelPage.searchadult_count();
         hotelPage.click_it();
