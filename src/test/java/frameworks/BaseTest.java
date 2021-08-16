@@ -41,6 +41,7 @@ public class BaseTest
         extentReports = new ExtentReports();
         extentReports.attachReporter(new ExtentHtmlReporter("test.html"));
         extentReports.attachReporter(new ExtentHtmlReporter("NewHotel.html")); 
+        extentReports.attachReporter(new ExtentHtmlReporter("CreateAccountTests.html")); 
     }
 
 //----------------------------------------------------------------------------------------------------------------------
