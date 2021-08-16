@@ -40,6 +40,7 @@ public class BaseTest
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         extentReports = new ExtentReports();
         extentReports.attachReporter(new ExtentHtmlReporter("test.html"));
+        extentReports.attachReporter(new ExtentHtmlReporter("NewHotel.html")); 
     }
 
 //----------------------------------------------------------------------------------------------------------------------

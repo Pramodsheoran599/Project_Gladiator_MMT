@@ -17,7 +17,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class FlightMultiCityTests extends BaseTest {
 
-	ExtentTest tc;
+	
     Search search;
     FlightSearchResultsPage flightSearchResults;
     
@@ -34,7 +34,9 @@ public class FlightMultiCityTests extends BaseTest {
 
        
     @Test
-    public void tc_multicity_flight_select02() {
+    public void tc_multicity_flight_select02() 
+    {
+    	
         driver.get(object_repository.getProperty("homepage_url"));
         search = new Search(driver);
 
@@ -44,8 +46,7 @@ public class FlightMultiCityTests extends BaseTest {
 
         Assert.assertEquals(true, search.isSameCityErrorVisible());
         
-        tc=extentReports.createTest("tc_multicity_flight_select02");
-  	  	tc.info("valid creds");
+      
         
     }
 
@@ -53,7 +54,9 @@ public class FlightMultiCityTests extends BaseTest {
 
 
     @Test(dependsOnMethods="tc_multicity_flight_select02")
-    public void tc_multicity_flight_select01() {
+    public void tc_multicity_flight_select01() 
+    {
+    	
     	List<String> cities = Arrays.asList(new String[] { "Mumbai", "Delhi", "Bengaluru" });
         List<String> dates = Arrays.asList(new String[] { "20-08-2021", "23-08-2021" });
         search.searchMultiCityTripFlights(cities, dates);
@@ -63,7 +66,6 @@ public class FlightMultiCityTests extends BaseTest {
 
         Assert.assertTrue(flightSearchResults.getCountOfFlights(true) > 0);
         
-        tc=extentReports.createTest("tc_multicity_flight_select01");
-  	  	tc.info("valid creds");
+       
     }
 }

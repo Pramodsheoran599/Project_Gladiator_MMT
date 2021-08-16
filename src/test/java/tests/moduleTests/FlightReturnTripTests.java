@@ -14,7 +14,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class FlightReturnTripTests extends BaseTest {
 	
-	ExtentTest tc;
+	
     Search search;
     FlightSearchResultsPage flightSearchResults;
     
@@ -33,6 +33,7 @@ public class FlightReturnTripTests extends BaseTest {
     @Test
     public void tc_return_flight_search_01() throws InterruptedException
     {
+    	
         driver.get(object_repository.getProperty("homepage_url"));
         search = new Search(driver);
         search.isOneWaySelected();
@@ -45,26 +46,29 @@ public class FlightReturnTripTests extends BaseTest {
 
         Assert.assertEquals(true, search.isRoundTripSelected());
         
-        tc=extentReports.createTest("tc_return_flight_search_01");
-  	  	tc.info("valid creds");
+       
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test(dependsOnMethods = "tc_return_flight_search_01")
-    public void tc_return_flight_search_02() {
+    public void tc_return_flight_search_02() 
+    {
+    	test = extentReports.createTest("tc_return_flight_search_02", "To go to ReturnTripFlights Booking Page and check if one way is selected");
+
         driver.findElement(By.cssSelector(".returnCross.landingSprite")).click();
 
         Assert.assertEquals(true, search.isOneWaySelected());
         
-        tc=extentReports.createTest("tc_return_flight_search_02");
-  	  	tc.info("valid creds");
+        
     }
     
 //----------------------------------------------------------------------------------------------------------------------
     
     @Test(dependsOnMethods = "tc_return_flight_search_02")
-    public void tc_return_flight_search_03() {
+    public void tc_return_flight_search_03() 
+    {
+    	
         search.selectRoundTrip();
         search.searchFlights();
 
@@ -73,7 +77,6 @@ public class FlightReturnTripTests extends BaseTest {
         Assert.assertTrue(driver.getTitle().equals("MakeMyTrip"));
         Assert.assertTrue(flightSearchResults.getCountOfFlights() > 0);
         
-        tc=extentReports.createTest("tc_return_flight_search_03");
-  	  	tc.info("valid creds");
+       
     }
 }
