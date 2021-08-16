@@ -23,7 +23,7 @@ public class EndToEnd_HotelBooking extends BaseTest
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test
-    public void endToEndHotelBooking() throws InterruptedException
+    public void endToEndHotelBooking()
     {
         test = extentReports.createTest("End-To-End Hotel Booking", "To Check End-To-End Hotel Booking Feature");
 
@@ -45,7 +45,7 @@ public class EndToEnd_HotelBooking extends BaseTest
         Assert.assertTrue(homePage.isUserLoggedIn());
         test.pass("Check if User is Logged in.");
 
-        takeScreenshot(object_repository.getProperty("snapshot.EndToEnd_Hotel_Booking") + "1. Login.png");
+        takeScreenshot(object_repository.getProperty("snapshot.EndToEnd.Hotel_Booking") + "1. Login.png");
 
         hotelPage = new HotelPage(driver);
         homePage.goto_hotels_page();
@@ -68,14 +68,14 @@ public class EndToEnd_HotelBooking extends BaseTest
         hotelPage.click_it();
         test.pass("Select Number of Guests.");
 
-        takeScreenshot(object_repository.getProperty("snapshot.EndToEnd_Hotel_Booking") + "2. Hotel_Search.png");
+        takeScreenshot(object_repository.getProperty("snapshot.EndToEnd.Hotel_Booking") + "2. Hotel_Search.png");
 
         hotelPage.searchHotels();
         test.pass("Click on Search Hotels.");
 
         waitTillVisibilityOf(By.id("Listing_hotel_1"));
 
-        takeScreenshot(object_repository.getProperty("snapshot.EndToEnd_Hotel_Booking") + "3. Searched_Hotels.png");
+        takeScreenshot(object_repository.getProperty("snapshot.EndToEnd.Hotel_Booking") + "3. Searched_Hotels.png");
 
         driver.findElement(By.id("Listing_hotel_1")).click();
         test.pass("Click on the first Hotel.");
@@ -88,7 +88,7 @@ public class EndToEnd_HotelBooking extends BaseTest
 
         waitTillVisibilityOf(By.id("detpg_headerright_book_now"));
 
-        takeScreenshot(object_repository.getProperty("snapshot.EndToEnd_Hotel_Booking") + "4. Hotel_Details.png");
+        takeScreenshot(object_repository.getProperty("snapshot.EndToEnd.Hotel_Booking") + "4. Hotel_Details.png");
 
         driver.findElement(By.id("detpg_headerright_book_now")).click();
         test.pass("Click on Book Now Button.");
@@ -104,7 +104,7 @@ public class EndToEnd_HotelBooking extends BaseTest
         driver.findElement(By.id("lName")).sendKeys("Sheoran");
         test.pass("Enter User's First and Last Name.");
 
-        takeScreenshot(object_repository.getProperty("snapshot.EndToEnd_Hotel_Booking") + "5. Review_Booking.png");
+        takeScreenshot(object_repository.getProperty("snapshot.EndToEnd.Hotel_Booking") + "5. Review_Booking.png");
 
         driver.findElement(By.linkText("PAY NOW")).click();
         test.pass("Click on Pay Now Button.");

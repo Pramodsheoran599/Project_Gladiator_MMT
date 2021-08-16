@@ -36,11 +36,13 @@ public class Login_Logout_Tests extends BaseTest
     {
         test = extentReports.createTest("tc_login01", "To check if Login Page Opens or not.");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
 
-        test.info("Checking if Login Page is Displayed By Verifying its Heading.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login01.png");
+        
         Assert.assertTrue(loginPage.isDisplayed());
+        test.pass("Check if Login Page is Displayed By Verifying its Heading.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -50,11 +52,13 @@ public class Login_Logout_Tests extends BaseTest
     {
         test = extentReports.createTest("tc_login02", "To Check Login Feature With Blank Username.");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
 
-        test.info("Checking if Continue Button is Disabled By Default.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login02.png");
+        
         Assert.assertFalse(isElementEnabled(loginPage.getContinue_button()));
+        test.pass("Check if Continue Button is Disabled By Default.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -63,16 +67,18 @@ public class Login_Logout_Tests extends BaseTest
     public void tc_login03()
     {
         test = extentReports.createTest("tc_login03", "To Check Login Feature With Blank Password Entered.");
-
-        test.info("Going to Login Page.");
+        
         loginPage = homePage.gotoLoginPage();
-
-        test.info("Entering Valid Email-ID and Clicking Continue.");
+        test.pass("Go to Login Page.");
+        
         loginPage.enterUsername("pramodsheoran599@gmail.com");
         loginPage.clickContinue();
+        test.pass("Enter Valid Email-ID and Click Continue.");
 
-        test.info("Checking if Login Button is Disabled by Default.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login03.png");
+
         Assert.assertFalse(isElementEnabled(loginPage.getLogin_button()));
+        test.pass("Check if Login Button is Disabled by Default.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -82,20 +88,22 @@ public class Login_Logout_Tests extends BaseTest
     {
         test = extentReports.createTest("tc_login04", "To check Login Feature with Invalid Email-ID");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
 
-        test.info("Entering Invalid Email-ID.");
         loginPage.enterUsername("mmt.project.team@gmailcom");
+        test.pass("Enter Invalid Email-ID.");
 
-        test.info("Checking if Continue button is disabled after entering Invalid Email-ID.");
         Assert.assertFalse(isElementEnabled(loginPage.getContinue_button()));
+        test.pass("Check if Continue button is disabled after Enter Invalid Email-ID.");
 
-        test.info("Clicking anywhere on the Login Page (as Continue button is disabled).");
         driver.findElement(By.className("modalMain")).click();
+        test.pass("Click anywhere on the Login Page (as Continue button is disabled).");
 
-        test.info("Checking if Invalid Email-ID Error is Displayed.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login04.png");
+
         Assert.assertTrue(isElementDisplayed(loginPage.getInvalidIdError()));
+        test.pass("Check if Invalid Email-ID Error is Displayed.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -105,19 +113,21 @@ public class Login_Logout_Tests extends BaseTest
     {
         test = extentReports.createTest("tc_login05", "To Check Login Feature with Valid Email and Valid Password");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
 
-        test.info("Entering Valid Email-ID and Clicking Continue.");
         loginPage.enterUsername("pramodsheoran599@gmail.com");
         loginPage.clickContinue();
+        test.pass("Enter Valid Email-ID and Click Continue.");
 
-        test.info("Entering Valid Password and Clicking Login.");
         loginPage.enterPassword("Pramod@1234");
         loginPage.login();
+        test.pass("Enter Valid Password and Click Login.");
 
-        test.info("Checking if User is Logged in.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login05.png");
+
         Assert.assertTrue(homePage.isUserLoggedIn());
+        test.pass("Check if User is Logged in.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -127,19 +137,22 @@ public class Login_Logout_Tests extends BaseTest
     {
         test = extentReports.createTest("tc_login06", "To check Login Feature with Valid Email-ID and Invalid Password");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
 
-        test.info("Entering Valid Email-ID and Clicking Continue.");
         loginPage.enterUsername("pramodsheoran599@gmail.com");
         loginPage.clickContinue();
+        test.pass("Enter Valid Email-ID and Click Continue.");
 
-        test.info("Entering Invalid Password and Clicking Login.");
         loginPage.enterPassword("Pramod@134");
         loginPage.login();
+        test.pass("Enter Invalid Password and Click Login.");
 
-        test.info("Checking if Invalid Password Error is Displayed.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login06.png");
+
         Assert.assertTrue(isElementDisplayed(loginPage.getError()));
+        test.pass("Check if Invalid Password Error is Displayed.");
+
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -149,40 +162,45 @@ public class Login_Logout_Tests extends BaseTest
     {
         test = extentReports.createTest("tc_login07", "To check Login Feature with Invalid Mobile Number");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
 
-        test.info("Entering Invalid Mobile Number and Clicking Continue.");
         loginPage.enterUsername("70215211422");
         loginPage.clickContinue();
+        test.pass("Enter Invalid Mobile Number and Click Continue.");
 
-        test.info("Checking if Invalid MobileNumber Error is Displayed.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login07.png");
+
         Assert.assertTrue(isElementDisplayed(loginPage.getError()));
+        test.pass("Check if Invalid Mobile Number Error is Displayed.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test (priority = 8, description = "To Check Login Feature with Valid Mobile Number and Valid Password")
-    public void tc_login08()
+    public void tc_login08() throws InterruptedException
     {
         test = extentReports.createTest("tc_login08", "To Check Login Feature with Valid Mobile Number and Valid Password");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
 
-        test.info("Entering Valid Mobile Number and Clicking Continue.");
         loginPage.enterUsername("7021521142");
         loginPage.clickContinue();
+        test.pass("Enter Valid Mobile Number and Click Continue.");
 
-        test.info("Clicking Login Via Password Link.");
+        Thread.sleep(20000);
         loginPage.clickLoginViaPassword();
+        test.pass("Click Login Via Password Link.");
 
-        test.info("Entering Valid Password and Clicking Login.");
         loginPage.enterPassword("Pramod@1234");
         loginPage.login();
+        test.pass("Enter Valid Password and Click Login.");
 
-        test.info("Checking if User is Logged in.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login08.png");
+
         Assert.assertTrue(homePage.isUserLoggedIn());
+        test.pass("Check if User is Logged in.");
         homePage.logout();
     }
 
@@ -193,22 +211,24 @@ public class Login_Logout_Tests extends BaseTest
     {
         test = extentReports.createTest("tc_login09", "To check Login Feature with Valid Mobile Number and Invalid Password");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
 
-        test.info("Entering Valid Mobile Number and Clicking Continue.");
         loginPage.enterUsername("7021521142");
         loginPage.clickContinue();
+        test.pass("Enter Valid Mobile Number and Click Continue.");
 
-        test.info("Clicking Login Via Password Link.");
         loginPage.clickLoginViaPassword();
+        test.pass("Click Login Via Password Link.");
 
-        test.info("Entering Invalid Password and Clicking Login.");
         loginPage.enterPassword("Pramod@134");
         loginPage.login();
+        test.pass("Enter Invalid Password and Click Login.");
 
-        test.info("Checking if Invalid Password Error is Displayed.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login09.png");
+
         Assert.assertTrue(isElementDisplayed(loginPage.getError()));
+        test.pass("Check if Invalid Password Error is Displayed.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -218,20 +238,22 @@ public class Login_Logout_Tests extends BaseTest
     {
         test = extentReports.createTest("tc_login10", "To check Login Feature with Valid Mobile Number and valid OTP");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
 
-        test.info("Entering Valid Mobile Number and Clicking Continue.");
         loginPage.enterUsername("7021521142");
         loginPage.clickContinue();
+        test.pass("Enter Valid Mobile Number and Click Continue.");
 
-        test.info("Waiting for Manual Input of OTP and then Clicking Login.");
         Thread.sleep(30000);
         loginPage.login();
+        test.pass("Waiting for Manual Input of OTP and then Click Login.");
 
-        test.info("Checking if User is Logged in.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login10.png");
+
         Assert.assertTrue(homePage.isUserLoggedIn());
         homePage.logout();
+        test.pass("Check if User is Logged in.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -241,19 +263,21 @@ public class Login_Logout_Tests extends BaseTest
     {
         test = extentReports.createTest("tc_login11", "To check Login Feature with Valid Mobile Number and Invalid OTP");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
 
-        test.info("Entering Valid Mobile Number and Clicking Continue.");
         loginPage.enterUsername("7021521142");
         loginPage.clickContinue();
+        test.pass("Enter Valid Mobile Number and Click Continue.");
 
-        test.info("Entering Invalid OTP and Clicking Login Button.");
         loginPage.enterOTP("12356");
         loginPage.login();
+        test.pass("Enter Invalid OTP and Click Login Button.");
 
-        test.info("Checking if Invalid OTP Error is Displayed.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login11.png");
+
         Assert.assertTrue(isElementDisplayed(loginPage.getInvalidOtpError()));
+        test.pass("Check if Invalid OTP Error is Displayed.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -264,34 +288,39 @@ public class Login_Logout_Tests extends BaseTest
 
         test = extentReports.createTest("tc_login12", "To check Login Feature with 'Login with Google' Button");
 
-        test.info("Going to Login Page.");
         loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
+
         String parentWindowId = driver.getWindowHandle();
 
-        test.info("Clicking Login Via Google Button.");
         loginPage.clickLoginViaGoogle();
+        test.pass("Click Login Via Google Button.");
 
         Set<String> allWindowIds = driver.getWindowHandles();
 
-        test.info("Switching to Google Authentication Window.");
         for (String id : allWindowIds)
         {
             if (!parentWindowId.equals(id))
+            {
                 driver.switchTo().window(id);
+                test.pass("Switching to Google Authentication Window.");
+            }
         }
 
-        test.info("Entering Valid Google Email, Password and Logging in.");
         driver.findElement(By.id("identifierId")).sendKeys("mmt.project.team@gmail.com");
         driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
         driver.findElement(By.name("password")).sendKeys("Project@Team10");
         Thread.sleep(1000);
         driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
+        test.pass("Enter Valid Google Email, Password and Logging in.");
 
-        test.info("Switching Back to Make My Trip Window.");
         driver.switchTo().window(parentWindowId);
+        test.pass("Switching Back to Make My Trip Window.");
 
-        test.info("Checking if User is Logged In.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login12.png");
+
         Assert.assertTrue(homePage.isUserLoggedIn());
+        test.pass("Check if User is Logged In.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -301,11 +330,13 @@ public class Login_Logout_Tests extends BaseTest
     {
         test = extentReports.createTest("tc_logout01", "To check if Logout happens or not");
 
-        test.info("Going to Profile Page and Clicking Logout Button.");
         homePage.logout();
+        test.pass("Go to Profile Page and Click Logout Button.");
 
-        test.info("Checking if User is Logged Out.");
+        takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_logout01.png");
+
         Assert.assertFalse(homePage.isUserLoggedIn());
+        test.pass("Check if User is Logged Out.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
