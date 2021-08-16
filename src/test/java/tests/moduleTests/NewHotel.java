@@ -7,6 +7,7 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import frameworks.BaseTest;
@@ -55,11 +56,13 @@ public class NewHotel extends BaseTest
     
 //----------------------------------------------------------------------------------------------------------------------
     
-    @Test(priority=3, description="To book a hotel")						//for Booking Page
-    public void tc_hotel_book01() throws InterruptedException
-    {
-    	test = extentReports.createTest("tc_hotel_book01", "To fill the tavellers Hotel Booking details");
-        driver.findElement(By.id("Listing_hotel_1")).click();
+    @Test(priority=3, description="To book a hotel")	
+   	public void tc_hotel_book01() throws InterruptedException 
+       {
+    	
+    	test = extentReports.createTest("tc_hotel_book01", "To not fill the tavellers Hotel Booking details");
+    	
+    	driver.findElement(By.id("Listing_hotel_1")).click();
 
         Set<String> Win = driver.getWindowHandles();
         List<String> allWin = new ArrayList<>(Win);
@@ -68,6 +71,26 @@ public class NewHotel extends BaseTest
         driver.findElement(By.id("detpg_headerright_book_now")).click();
 
         Thread.sleep(5000);
+        
+
+   		driver.findElement(By.linkText("PAY NOW")).click();
+
+   		Assert.assertTrue(driver.findElement(By.cssSelector("p[class='errMsg font11 redText appendTop5']")).isDisplayed());
+
+   		takeScreenshot(object_repository.getProperty("snapshot.NewHotel") + "bookingDetails(blank).png");
+   		
+   		Thread.sleep(5000);
+   		
+   		
+
+   	}
+    
+    
+    @Test(priority=4, description="To book a hotel")						//for Booking Page
+    public void tc_hotel_book02() throws InterruptedException
+    {
+    	test = extentReports.createTest("tc_hotel_book02", "To fill the tavellers Hotel Booking details");
+        
         
         WebElement E = driver.findElement(By.id("title"));
         Select title = new Select(E);
@@ -81,4 +104,8 @@ public class NewHotel extends BaseTest
         
         Thread.sleep(5000);
     }
+    
+   
+    
+    
 }
