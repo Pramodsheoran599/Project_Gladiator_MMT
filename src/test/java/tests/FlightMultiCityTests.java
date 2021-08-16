@@ -10,33 +10,40 @@ import frameworks.BaseTest;
 import pages.FlightSearchResultsPage;
 import pages.Search;
 
-
 public class FlightMultiCityTests extends BaseTest {
 
-    Search search;
-    FlightSearchResultsPage flightSearchResults;
-    
-    @Test
-    public void tc_multicity_flight_select02() {
-        driver.get(object_repository.getProperty("homepage_url"));
-        search = new Search(driver);
+	Search search;
+	FlightSearchResultsPage flightSearchResults;
 
-        List<String> cities = Arrays.asList(new String[] { "Mumbai", "Mumbai"});
-        List<String> dates = Arrays.asList(new String[] { "20-08-2021"});
-        search.searchMultiCityTripFlights(cities, dates);
+	@Test(description = "To test if flights are available")
+	public void ts_multicity_flight_search02() {
+		driver.get(object_repository.getProperty("homepage_url"));
+		search = new Search(driver);
 
-        Assert.assertEquals(true, search.isSameCityErrorVisible());
-    }
+		List<String> cities = Arrays.asList(new String[] { "Mumbai", "Mumbai" });
+		List<String> dates = Arrays.asList(new String[] { "20-08-2021" });
+		search.searchMultiCityTripFlights(cities, dates);
 
-    @Test(dependsOnMethods="tc_multicity_flight_select02")
-    public void tc_multicity_flight_select01() {
-    	List<String> cities = Arrays.asList(new String[] { "Mumbai", "Delhi", "Bengaluru" });
-        List<String> dates = Arrays.asList(new String[] { "20-08-2021", "23-08-2021" });
-        search.searchMultiCityTripFlights(cities, dates);
-        search.searchFlights();
+		Assert.assertEquals(true, search.isSameCityErrorVisible());
+	}
 
-        flightSearchResults = new FlightSearchResultsPage(driver);
+	@Test(dependsOnMethods = "ts_multicity_flight_search02", description = "To test flights with same arrival and departure destination")
+	public void ts_multicity_flight_search01() {
+		List<String> cities = Arrays.asList(new String[] { "Mumbai", "Delhi", "Bengaluru" });
+		List<String> dates = Arrays.asList(new String[] { "20-08-2021", "23-08-2021" });
+		search.searchMultiCityTripFlights(cities, dates);
+		search.searchFlights();
 
-        Assert.assertTrue(flightSearchResults.getCountOfFlights(true) > 0);
-    }
+		flightSearchResults = new FlightSearchResultsPage(driver);
+
+		Assert.assertTrue(flightSearchResults.getCountOfFlights(true) > 0);
+	}
+
+	@Test(dependsOnMethods = "ts_multicity_flight_search01", description = "To test book now feature")
+	public void tc_multicity_flight_select01() {
+		flightSearchResults.bookFirstMultiCItyFlight();
+		flightSearchResults.switchToNewTab();
+
+		Assert.assertTrue(driver.getCurrentUrl().contains("review"));
+	}
 }
