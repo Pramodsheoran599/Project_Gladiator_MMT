@@ -7,24 +7,31 @@ import org.testng.annotations.Test;
 
 import frameworks.BaseTest;
 import pages.FlightSearchResultsPage;
+import pages.ReviewBookingPage;
 import pages.Search;
+import pages.SeatSelectionPage;
 
 public class FlightOneWayTripTests extends BaseTest {
 
 	Search search;
 	FlightSearchResultsPage flightSearchResults;
+	ReviewBookingPage reviewBookingPage;
+	SeatSelectionPage seatSelectionPage;
 	boolean isReviewDetail = false;
 
 	@Test(description = "To test flights with same arrival and departure  destination")
 	public void tc_flight_search02() throws InterruptedException {
-		test = extentReports.createTest("tc_flight_search02", "To test flights search with same arrival and departure  destination");
+		test = extentReports.createTest("tc_flight_search02",
+				"To test flights search with same arrival and departure  destination");
 		driver.get(object_repository.getProperty("homepage_url"));
 		search = new Search(driver);
 		search.selectFromCity();
 		search.searchFromCity("Mumbai");
 		test.pass("Mumbai entered as source city.");
+
 		search.searchToCity("Mumbai");
 		test.pass("Mumbai entered as destination city.");
+
 		Assert.assertEquals(true, search.isSameCityErrorVisible());
 		test.info("Error message is displayed if the source and destination city is same.");
 		takeScreenshot(object_repository.getProperty("snapshot.FlightOneWayTripTests") + "SameCityError.png");
@@ -35,9 +42,10 @@ public class FlightOneWayTripTests extends BaseTest {
 		test = extentReports.createTest("tc_flight_search01", "To Test if flights are available");
 		String fromCity = "Mumbai";
 		String toCity = "Delhi";
-		String date = "20-08-2021";
+		String date = "25-08-2021";
 		search.searchOneWayTripFlights(fromCity, toCity, date);
 		test.pass("Source, Destination City and Date entered.");
+
 		flightSearchResults = new FlightSearchResultsPage(driver);
 		Assert.assertTrue(flightSearchResults.getCountOfFlights() > 0);
 		test.pass("Flight search Success.");
@@ -54,7 +62,6 @@ public class FlightOneWayTripTests extends BaseTest {
 		flightSearchResults.switchToNewTab();
 		Assert.assertTrue(driver.getCurrentUrl().contains("review"));
 		test.pass("Review Booking Page is Displayed.");
-
 		test.pass("Book Now Feature is Working");
 		takeScreenshot(object_repository.getProperty("snapshot.FlightOneWayTripTests") + "BookNow.png");
 	}
@@ -67,11 +74,10 @@ public class FlightOneWayTripTests extends BaseTest {
 		if (url.contains("reviewDetails")) {
 			isReviewDetail = true;
 			waitForSeconds(5);
-			flightSearchResults
-					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
-			Assert.assertTrue(flightSearchResults
+			reviewBookingPage = new ReviewBookingPage(driver);
+			reviewBookingPage.clickOnContinue();
+			Assert.assertTrue(reviewBookingPage
 					.isElementPresent(By.cssSelector("span[class='errorMsg fontSize14 appendLeft5']")));
-
 			test.info("User cannot proceed if Insurance option is not selected");
 			takeScreenshot(
 					object_repository.getProperty("snapshot.FlightOneWayTripTests") + "InsuranceOptionNotSelected.png");
@@ -86,7 +92,7 @@ public class FlightOneWayTripTests extends BaseTest {
 			driver.findElement(By.cssSelector("input[placeholder='First & Middle Name']")).sendKeys("Abhinash");
 			driver.findElement(By.cssSelector("input[placeholder='Last Name']")).sendKeys("Malakar");
 			driver.findElement(
-							By.xpath("//*[@id=\"wrapper_ADULT\"]/div[2]/div[2]/div/div[2]/div/div/div[3]/div/div/label[1]"))
+					By.xpath("//*[@id=\"wrapper_ADULT\"]/div[2]/div[2]/div/div[2]/div/div/div[3]/div/div/label[1]"))
 					.click();
 
 			driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys("12345678");
@@ -97,14 +103,14 @@ public class FlightOneWayTripTests extends BaseTest {
 			driver.findElement(By.xpath("//*[@id=\"mainSection_0\"]/div[6]/button")).click();
 			driver.findElement(By.cssSelector("button[class='button buttonPrimary buttonBig fontSize14']")).click();
 
-			Thread.sleep(5000);
+			waitForSeconds(5);
 			if (driver.findElement(By.cssSelector("span[class='fontSize16 linkText']")).isDisplayed())
 				driver.findElement(By.cssSelector("span[class='fontSize16 linkText']")).click();
 
-			Thread.sleep(3000);
+			waitForSeconds(3);
 
 			driver.findElement(By.cssSelector("span[class='linkText ']")).click();
-			Thread.sleep(4000);
+			waitForSeconds(4);
 			driver.findElement(By.cssSelector("button[class='lato-black button buttonPrimary extraPadBtn fontSize16']"))
 					.click();
 		}
@@ -114,69 +120,46 @@ public class FlightOneWayTripTests extends BaseTest {
 	public void tc_flight_traveller01() throws Exception {
 		test = extentReports.createTest("tc_flight_traveller01", "To test review without selecting any add-ons");
 
-
 		if (isReviewDetail) {
-			flightSearchResults.jsClick(
-					driver.findElement(By.cssSelector("span[class='darkText lightFont fontSize14 appendLeft10']")));
+			reviewBookingPage.optForInsurance();
 			waitForSeconds(2);
-
 			test.pass("Insurance Option is Opted.");
-
-			flightSearchResults.waitTillVisibilityOfElement(By.cssSelector("button[class='addTravellerBtn']"));
-			flightSearchResults.jsClick(driver.findElement((By.cssSelector("button[class='addTravellerBtn']"))));
-			flightSearchResults.waitTillVisibilityOfElement(By.cssSelector("input[placeholder='First & Middle Name']"));
-
-			driver.findElement(By.cssSelector("input[placeholder='First & Middle Name']")).sendKeys("Rutvik");
-			driver.findElement(By.cssSelector("input[placeholder='Last Name']")).sendKeys("Panchal");
-			driver.findElement(By.cssSelector("label[tabindex='0']")).click();
-			driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys("1234567890");
-			driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("test@test.com");
-			waitForSeconds(2);
-
+			reviewBookingPage.clickAddTravellerButton();
+			reviewBookingPage.addTravellerDetails("Rutvik", "Panchal");
+			reviewBookingPage.addTravellerContactDetails("1234567890", "test@test.com");
+			waitForSeconds(3);
 			test.pass("Traveller Details entered.");
-
-			flightSearchResults.waitForElementTobeClickable(
-					driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
-			flightSearchResults
-					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
-			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
+			reviewBookingPage.clickOnContinue();
 			waitForSeconds(2);
 
-			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='CONFIRM']")));
-			flightSearchResults.switchToNewTab();
+			reviewBookingPage.confirmBooking();
 
+			reviewBookingPage.jsClick(driver.findElement(By.xpath("//button[normalize-space()='CONFIRM']")));
+			reviewBookingPage.switchToNewTab();
 			test.pass("Flight Booking is done after valid details input.");
-			takeScreenshot(
-					object_repository.getProperty("snapshot.FlightOneWayTripTests") + "ValidFlightBooking.png");
+			takeScreenshot(object_repository.getProperty("snapshot.FlightOneWayTripTests") + "ValidFlightBooking.png");
+		} else {
+		}
+	}
 
+	@Test(dependsOnMethods = "tc_flight_traveller01", description = "To test flight search issue")
+	public void tc_flight_seats01() throws Exception {
+		if (isReviewDetail) {
 			test = extentReports.createTest("tc_flight_seats01", "To test flight seat selection");
-
-
-
-			flightSearchResults.jsClick(
-					driver.findElement(By.cssSelector("span[class='fontSize16 boldFont appendRight20 linkText ']")));
-
-			for (WebElement e : driver
-					.findElements(By.cssSelector("div[style='background-color: rgb(186, 218, 255);']"))) {
-				flightSearchResults.executeMouseClick(e);
-				break;
-			}
+			seatSelectionPage = new SeatSelectionPage(driver);
+			seatSelectionPage.clickContinuePopUp();
+			seatSelectionPage.selectSeat();
 			test.pass("Seat selected.");
 
-
 			waitForSeconds(2);
+			seatSelectionPage.clickContinue();
 
-			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
-			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='CONTINUE ANYWAY']")));
-
-			flightSearchResults.switchToNewTab();
-			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='Proceed to pay']")));
+			seatSelectionPage.proceedToPay();
+			seatSelectionPage.switchToNewTab();
 
 			test.pass("Proceed to Pay Clicked.");
 			test.pass("Flight Booked.");
-			takeScreenshot(
-					object_repository.getProperty("snapshot.FlightOneWayTripTests") + "FlightSeatSelection.png");
-
+			takeScreenshot(object_repository.getProperty("snapshot.FlightOneWayTripTests") + "FlightSeatSelection.png");
 		} else {
 
 		}

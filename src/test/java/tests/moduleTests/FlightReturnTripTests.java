@@ -96,10 +96,12 @@ public class FlightReturnTripTests extends BaseTest {
 
     Search search;
     FlightSearchResultsPage flightSearchResults;
-
+    
     @Test
     public void tc_return_flight_search_01() throws InterruptedException
     {
+        test = extentReports.createTest("tc_flight_search02",
+    			"To test flights search with same arrival and departure  destination");
         driver.get(object_repository.getProperty("homepage_url"));
         search = new Search(driver);
         search.isOneWaySelected();
