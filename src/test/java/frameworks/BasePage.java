@@ -73,5 +73,22 @@ public class BasePage {
 		action.moveToElement(webElement).click().perform();
 	}
 
+//----------------------------------------------------------------------------------------------------------------------
+	
+	public void jsClick(WebElement element) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+	}
+	
+//----------------------------------------------------------------------------------------------------------------------
+
+	public boolean isElementPresent(By element) {
+		return driver.findElements(element).size() != 0;
+	}
+	
+	public void waitForElementTobeClickable(WebElement webElement) {
+        new WebDriverWait(driver, 30).until(
+                ExpectedConditions.elementToBeClickable(webElement));
+    }
+
 }
 //----------------------------------------------------------------------------------------------------------------------

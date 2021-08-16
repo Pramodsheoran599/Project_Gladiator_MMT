@@ -35,10 +35,6 @@ public class FlightSearchResultsPage extends BasePage {
 			return driver.findElements(flights).size();
 	}
 	
-	protected void jsClick(WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-    }
-	
 	public void bookFirstFlight() {
 		try {
 			waitTillVisibilityOfElement(By.xpath("//span[@class='bgProperties icon20 overlayCrossIcon']"));

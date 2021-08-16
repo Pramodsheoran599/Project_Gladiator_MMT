@@ -18,12 +18,10 @@ public class FlightOneWayTripTests extends BaseTest {
 	@Test(description = "To Test if flights are available")
 	public void tc_flight_search02() throws InterruptedException {
 		driver.get(object_repository.getProperty("homepage_url"));
-
 		search = new Search(driver);
 		search.selectFromCity();
 		search.searchFromCity("Mumbai");
 		search.searchToCity("Mumbai");
-
 		Assert.assertEquals(true, search.isSameCityErrorVisible());
 	}
 
@@ -42,7 +40,6 @@ public class FlightOneWayTripTests extends BaseTest {
 	public void tc_flight_select01() {
 		flightSearchResults.bookFirstFlight();
 		flightSearchResults.switchToNewTab();
-
 		Assert.assertTrue(driver.getCurrentUrl().contains("review"));
 	}
 
@@ -54,17 +51,41 @@ public class FlightOneWayTripTests extends BaseTest {
 			waitForSeconds(5);
 			flightSearchResults
 					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
-			Assert.assertTrue(
-					driver.findElements(By.cssSelector("span[class='errorMsg fontSize14 appendLeft5']")).size() != 0);
+			Assert.assertTrue(flightSearchResults
+					.isElementPresent(By.cssSelector("span[class='errorMsg fontSize14 appendLeft5']")));
 		} else {
-			Thread.sleep(1000);
-			flightSearchResults.executeMouseClick(driver.findElement(By.id("review-continue")));
-			flightSearchResults.executeMouseClick(driver.findElement(By.id("review-continue")));
+			driver.findElement(By.xpath("//span[@class='labeltext darkGrayText']")).click();
+			waitForSeconds(2);
+			flightSearchResults
+					.executeMouseClick(driver.findElement(By.xpath("//button[xpath='1']']")));
 
-			Assert.assertTrue(driver
-					.findElements(
-							By.xpath("//font[normalize-space()='NOTE: Please select Yes or No above to continue.']"))
-					.size() != 0);
+			Thread.sleep(4000);
+			driver.findElement(By.cssSelector("button[class='addTravellerBtn']")).click();
+			Thread.sleep(4000);
+			driver.findElement(By.cssSelector("input[placeholder='First & Middle Name']")).sendKeys("Abhinash");
+			driver.findElement(By.cssSelector("input[placeholder='Last Name']")).sendKeys("Malakar");
+			driver.findElement(
+					By.xpath("//*[@id=\"wrapper_ADULT\"]/div[2]/div[2]/div/div[2]/div/div/div[3]/div/div/label[1]"))
+					.click();
+
+			driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys("12345678");
+			driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("abc@gmail.com");
+
+			flightSearchResults
+					.executeMouseClick(driver.findElement(By.xpath("//*[@id=\"mainSection_0\"]/div[6]/button")));
+			driver.findElement(By.xpath("//*[@id=\"mainSection_0\"]/div[6]/button")).click();
+			driver.findElement(By.cssSelector("button[class='button buttonPrimary buttonBig fontSize14']")).click();
+
+			Thread.sleep(5000);
+			if (driver.findElement(By.cssSelector("span[class='fontSize16 linkText']")).isDisplayed())
+				driver.findElement(By.cssSelector("span[class='fontSize16 linkText']")).click();
+
+			Thread.sleep(3000);
+
+			driver.findElement(By.cssSelector("span[class='linkText ']")).click();
+			Thread.sleep(4000);
+			driver.findElement(By.cssSelector("button[class='lato-black button buttonPrimary extraPadBtn fontSize16']"))
+					.click();
 		}
 	}
 
@@ -82,19 +103,13 @@ public class FlightOneWayTripTests extends BaseTest {
 	@Test(dependsOnMethods = "tc_flight_review01", description = "To test continue button without filling mandatory details")
 	public void tc_flight_traveller01() throws Exception {
 		if (isReviewDetail) {
-			flightSearchResults.executeMouseClick(
+			flightSearchResults.jsClick(
 					driver.findElement(By.cssSelector("span[class='darkText lightFont fontSize14 appendLeft10']")));
 
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			waitForSeconds(2);
 
 			flightSearchResults.waitTillVisibilityOfElement(By.cssSelector("button[class='addTravellerBtn']"));
-			flightSearchResults.executeMouseClick(driver.findElement(By.xpath(
-					"/html[1]/body[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/form[1]/div[5]/div[1]/div[1]/div[3]/div[2]/div[3]/button[1]")));
-
+			flightSearchResults.jsClick(driver.findElement((By.cssSelector("button[class='addTravellerBtn']"))));
 			flightSearchResults.waitTillVisibilityOfElement(By.cssSelector("input[placeholder='First & Middle Name']"));
 
 			driver.findElement(By.cssSelector("input[placeholder='First & Middle Name']")).sendKeys("Rutvik");
@@ -102,30 +117,20 @@ public class FlightOneWayTripTests extends BaseTest {
 			driver.findElement(By.cssSelector("label[tabindex='0']")).click();
 			driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys("1234567890");
 			driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("test@test.com");
+			waitForSeconds(2);
 
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
+			flightSearchResults.waitForElementTobeClickable(
+					driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
 			flightSearchResults
 					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
-			flightSearchResults
-					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
+			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
+			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
+			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
+			waitForSeconds(2);
 
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-			flightSearchResults
-					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='CONFIRM']")));
-
+			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='CONFIRM']")));
 			flightSearchResults.switchToNewTab();
-
-			flightSearchResults.executeMouseClick(
+			flightSearchResults.jsClick(
 					driver.findElement(By.cssSelector("span[class='fontSize16 boldFont appendRight20 linkText ']")));
 
 			for (WebElement e : driver
@@ -134,16 +139,13 @@ public class FlightOneWayTripTests extends BaseTest {
 				break;
 			}
 
-			Thread.sleep(2000);
+			waitForSeconds(2);
 
-			flightSearchResults
-					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
-			flightSearchResults
-					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='CONTINUE ANYWAY']")));
+			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
+			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='CONTINUE ANYWAY']")));
 
 			flightSearchResults.switchToNewTab();
-			flightSearchResults
-					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Proceed to pay']")));
+			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='Proceed to pay']")));
 
 		} else {
 
