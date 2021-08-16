@@ -7,9 +7,8 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,6 +17,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -71,6 +71,23 @@ public class BaseTest
     {
         driver.quit();
         extentReports.flush();
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    public void takeScreenshot(String path)
+    {
+        TakesScreenshot tc = (TakesScreenshot) driver;
+        File from = tc.getScreenshotAs(OutputType.FILE);
+
+        try
+        {
+            FileHandler.copy(from, new File(path));
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
 //----------------------------------------------------------------------------------------------------------------------
