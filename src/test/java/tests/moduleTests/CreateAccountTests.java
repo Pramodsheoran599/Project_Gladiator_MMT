@@ -9,8 +9,6 @@ import pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.ExtentTest;
-
 
 public class CreateAccountTests extends BaseTest
 {
@@ -24,7 +22,7 @@ public class CreateAccountTests extends BaseTest
         LoginPage loginPage = homePage.gotoLoginPage();
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
 
-        loginPage.enterUsername("jacemir442@alltekia.com");
+        loginPage.enterUsername("potodi3056@alltekia.com");
         loginPage.clickContinue();
 
         Thread.sleep(30000);                        // Wait For manually entering OTP
@@ -35,6 +33,8 @@ public class CreateAccountTests extends BaseTest
         createAccountPage.clickSave();
 
         Assert.assertTrue(homePage.isUserLoggedIn());
+        
+        takeScreenshot(object_repository.getProperty("snapshot.CreateAccountTests") + "Account created.png");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
