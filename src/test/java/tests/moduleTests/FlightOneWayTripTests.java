@@ -20,12 +20,12 @@ public class FlightOneWayTripTests extends BaseTest {
     
 //----------------------------------------------------------------------------------------------------------------------    
 
-    @Test
-   	public void report()
-   	{
-   		report=new ExtentReports();
-   		report.attachReporter(new ExtentHtmlReporter("FlightOneWayTripTests.html"));
-   	}
+//    @Test
+//   	public void report()
+//   	{
+//   		extentReports=new ExtentReports();
+//   		report.attachReporter(new ExtentHtmlReporter("FlightOneWayTripTests.html"));
+//   	}
        
 //----------------------------------------------------------------------------------------------------------------------
        
@@ -41,7 +41,7 @@ public class FlightOneWayTripTests extends BaseTest {
 
         Assert.assertEquals(true, search.isSameCityErrorVisible());
         
-        tc=report.createTest("tc_flight_search_02");
+        tc=extentReports.createTest("tc_flight_search_02");
   	  	tc.info("valid creds");
     }
     
@@ -56,7 +56,7 @@ public class FlightOneWayTripTests extends BaseTest {
 
         Assert.assertTrue(flightSearchResults.getCountOfFlights() > 0);
 
-        tc=report.createTest("tc_flight_search_01");
+        tc=extentReports.createTest("tc_flight_search_01");
   	  	tc.info("valid creds");
     }
 }

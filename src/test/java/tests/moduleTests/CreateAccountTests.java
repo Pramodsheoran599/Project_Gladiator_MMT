@@ -9,9 +9,7 @@ import pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 
 public class CreateAccountTests extends BaseTest
@@ -24,8 +22,7 @@ public class CreateAccountTests extends BaseTest
 	  @Test
 		public void report()
 		{
-			report=new ExtentReports();
-			report.attachReporter(new ExtentHtmlReporter("NewHotel.html"));
+
 		}
 	   
 //----------------------------------------------------------------------------------------------------------------------
@@ -53,7 +50,7 @@ public class CreateAccountTests extends BaseTest
 
         Assert.assertTrue(homePage.isUserLoggedIn());
         
-        tc=report.createTest("tc_signup01");
+        tc=extentReports.createTest("tc_signup01");
   	  	tc.info("valid creds");
   	  
     }

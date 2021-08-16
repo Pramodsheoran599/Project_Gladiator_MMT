@@ -71,6 +71,7 @@ public class LoginPage extends BasePage
 
     public void enterPassword(String password)
     {
+        waitTillVisibilityOfElement(passwordField);
         driver.findElement(passwordField).sendKeys(password);
     }
 
@@ -78,6 +79,7 @@ public class LoginPage extends BasePage
 
     public void enterOTP(String otp)
     {
+        waitTillVisibilityOfElement(otpField);
         driver.findElement(otpField).sendKeys(otp);
     }
 

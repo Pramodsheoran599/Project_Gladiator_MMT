@@ -22,13 +22,13 @@ public class FlightMultiCityTests extends BaseTest {
     FlightSearchResultsPage flightSearchResults;
     
 //----------------------------------------------------------------------------------------------------------------------
-    
-    @Test
-   	public void report()
-   	{
-   		report=new ExtentReports();
-   		report.attachReporter(new ExtentHtmlReporter("FlightMultiCityTripTests.html"));
-   	}
+//
+//    @Test
+//   	public void report()
+//   	{
+//   		report=new ExtentReports();
+//   		report.attachReporter(new ExtentHtmlReporter("FlightMultiCityTripTests.html"));
+//   	}
        
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ public class FlightMultiCityTests extends BaseTest {
 
         Assert.assertEquals(true, search.isSameCityErrorVisible());
         
-        tc=report.createTest("tc_multicity_flight_select02");
+        tc=extentReports.createTest("tc_multicity_flight_select02");
   	  	tc.info("valid creds");
         
     }
@@ -63,7 +63,7 @@ public class FlightMultiCityTests extends BaseTest {
 
         Assert.assertTrue(flightSearchResults.getCountOfFlights(true) > 0);
         
-        tc=report.createTest("tc_multicity_flight_select01");
+        tc=extentReports.createTest("tc_multicity_flight_select01");
   	  	tc.info("valid creds");
     }
 }

@@ -26,12 +26,11 @@ public class NewHotel extends BaseTest {
 
 //----------------------------------------------------------------------------------------------------------------------
    
-    @Test
-	public void report()
-	{
-		report=new ExtentReports();
-		report.attachReporter(new ExtentHtmlReporter("NewHotel.html"));
-	}
+//    @Test
+//	public void report()
+//	{
+//		report.attachReporter(new ExtentHtmlReporter("NewHotel.html"));
+//	}
     
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -45,7 +44,7 @@ public class NewHotel extends BaseTest {
         homepage = new HomePage(driver);
         homepage.goto_hotels_page();
         
-        tc=report.createTest("tc_hotel_search01");
+        tc=extentReports.createTest("tc_hotel_search01");
   	  	tc.info("valid creds");
   	  
         
@@ -56,9 +55,6 @@ public class NewHotel extends BaseTest {
     @Test(priority=2, description="Hotels page should be displayed")			//for filling details Page
     public void tc_hotel_search02() throws Exception
     {
-       
-    
-
         hotelPage.selectFromArea();
         hotelPage.searchFromArea("Goa");
         hotelPage.select_check_in_date();
@@ -70,7 +66,7 @@ public class NewHotel extends BaseTest {
         hotelPage.click_it();
         hotelPage.searchHotels();
         
-        tc=report.createTest("tc_hotel_search02");
+        tc=extentReports.createTest("tc_hotel_search02");
   	  	tc.info("valid creds");
     }
     
@@ -103,7 +99,7 @@ public class NewHotel extends BaseTest {
         driver.findElement(By.id("mNo")).sendKeys("7021521142");
         driver.findElement(By.linkText("PAY NOW")).click();
         
-        tc=report.createTest("tc_hotel_book01");
+        tc=extentReports.createTest("tc_hotel_book01");
         tc.info("valid creds");
   	  
 

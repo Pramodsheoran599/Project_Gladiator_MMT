@@ -20,12 +20,12 @@ public class FlightReturnTripTests extends BaseTest {
     
 //----------------------------------------------------------------------------------------------------------------------
     
-    @Test
-   	public void report()
-   	{
-   		report=new ExtentReports();
-   		report.attachReporter(new ExtentHtmlReporter("FlightReturnTripTests.html"));
-   	}
+//    @Test
+//   	public void report()
+//   	{
+//   		report=new ExtentReports();
+//   		report.attachReporter(new ExtentHtmlReporter("FlightReturnTripTests.html"));
+//   	}
        
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ public class FlightReturnTripTests extends BaseTest {
 
         Assert.assertEquals(true, search.isRoundTripSelected());
         
-        tc=report.createTest("tc_return_flight_search_01");
+        tc=extentReports.createTest("tc_return_flight_search_01");
   	  	tc.info("valid creds");
     }
 
@@ -57,7 +57,7 @@ public class FlightReturnTripTests extends BaseTest {
 
         Assert.assertEquals(true, search.isOneWaySelected());
         
-        tc=report.createTest("tc_return_flight_search_02");
+        tc=extentReports.createTest("tc_return_flight_search_02");
   	  	tc.info("valid creds");
     }
     
@@ -73,7 +73,7 @@ public class FlightReturnTripTests extends BaseTest {
         Assert.assertTrue(driver.getTitle().equals("MakeMyTrip"));
         Assert.assertTrue(flightSearchResults.getCountOfFlights() > 0);
         
-        tc=report.createTest("tc_return_flight_search_03");
+        tc=extentReports.createTest("tc_return_flight_search_03");
   	  	tc.info("valid creds");
     }
 }
