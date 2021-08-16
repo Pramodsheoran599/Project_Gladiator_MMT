@@ -26,7 +26,7 @@ public class BasePage {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-	protected void waitTillVisibilityOfElement(By element) {
+	public void waitTillVisibilityOfElement(By element) {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(element));
 	}
@@ -48,7 +48,7 @@ public class BasePage {
 	
 //----------------------------------------------------------------------------------------------------------------------
 
-	protected void scrollPageVertically(int pixels) {
+	public void scrollPageVertically(int pixels) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0," + pixels + ")");
 	}
