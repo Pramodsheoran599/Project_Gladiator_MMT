@@ -10,6 +10,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FlightSearchResultsPage extends BasePage {
 
@@ -39,14 +40,11 @@ public class FlightSearchResultsPage extends BasePage {
     }
 	
 	public void bookFirstFlight() {
-		
 		try {
 			waitTillVisibilityOfElement(By.xpath("//span[@class='bgProperties icon20 overlayCrossIcon']"));
 			driver.findElement(By.xpath("//span[@class='bgProperties icon20 overlayCrossIcon']")).click();
 		} catch (NoSuchElementException e) {
-
 		} catch (TimeoutException e) {
-
 		}
 
 		List<WebElement> ele = driver.findElements(By.cssSelector("[id^=bookbutton]"));

@@ -33,19 +33,14 @@ public class BasePage {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+	public boolean checkIfElementIsEnabled(By locator) {
+		try {
+			return driver.findElement(locator).isDisplayed();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
 
-    public boolean checkIfElementIsEnabled(By locator)
-    {
-        try
-        {
-            return driver.findElement(locator).isDisplayed();
-        }
-        catch (NoSuchElementException e)
-        {
-            return false;
-        }
-    }
-	
 //----------------------------------------------------------------------------------------------------------------------
 
 	public void scrollPageVertically(int pixels) {
@@ -64,6 +59,9 @@ public class BasePage {
 				driver.switchTo().window(w);
 			}
 		}
+
+		new WebDriverWait(driver, 10).until(webDriver -> ((JavascriptExecutor) webDriver)
+				.executeScript("return document.readyState").equals("complete"));
 	}
 
 //----------------------------------------------------------------------------------------------------------------------

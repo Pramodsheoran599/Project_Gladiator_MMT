@@ -1,7 +1,5 @@
 package tests;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -51,23 +49,21 @@ public class FlightOneWayTripTests extends BaseTest {
 	@Test(dependsOnMethods = "tc_flight_select01", description = "To test review page")
 	public void tc_flight_review02() throws Exception {
 		String url = driver.getCurrentUrl();
-		System.out.println(url);
 		if (url.contains("reviewDetails")) {
 			isReviewDetail = true;
-
-			List<WebElement> but = driver.findElements(
-					By.cssSelector("button[class='lato-black button buttonPrimary extraPadBtn fontSize16 ']"));
-			for (WebElement b : but) {
-				if (b.getText().equalsIgnoreCase("continue")) {
-					b.click();
-				}
-			}
+			waitForSeconds(5);
+			flightSearchResults
+					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
 			Assert.assertTrue(
 					driver.findElements(By.cssSelector("span[class='errorMsg fontSize14 appendLeft5']")).size() != 0);
 		} else {
-			flightSearchResults.executeMouseClick(driver.findElement(By.cssSelector("button[id='review-continue']")));
+			Thread.sleep(1000);
+			flightSearchResults.executeMouseClick(driver.findElement(By.id("review-continue")));
+			flightSearchResults.executeMouseClick(driver.findElement(By.id("review-continue")));
 
-			Assert.assertTrue(driver.findElements(By.cssSelector("p[class='validation-error digit-validation-error']"))
+			Assert.assertTrue(driver
+					.findElements(
+							By.xpath("//font[normalize-space()='NOTE: Please select Yes or No above to continue.']"))
 					.size() != 0);
 		}
 	}
@@ -84,65 +80,73 @@ public class FlightOneWayTripTests extends BaseTest {
 	}
 
 	@Test(dependsOnMethods = "tc_flight_review01", description = "To test continue button without filling mandatory details")
-	public void tc_flight_traveller01() {
+	public void tc_flight_traveller01() throws Exception {
 		if (isReviewDetail) {
 			flightSearchResults.executeMouseClick(
 					driver.findElement(By.cssSelector("span[class='darkText lightFont fontSize14 appendLeft10']")));
 
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
 			flightSearchResults.waitTillVisibilityOfElement(By.cssSelector("button[class='addTravellerBtn']"));
-			flightSearchResults
-					.executeMouseClick(driver.findElement(By.cssSelector("button[class='addTravellerBtn']")));
-			
+			flightSearchResults.executeMouseClick(driver.findElement(By.xpath(
+					"/html[1]/body[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/form[1]/div[5]/div[1]/div[1]/div[3]/div[2]/div[3]/button[1]")));
+
+			flightSearchResults.waitTillVisibilityOfElement(By.cssSelector("input[placeholder='First & Middle Name']"));
+
 			driver.findElement(By.cssSelector("input[placeholder='First & Middle Name']")).sendKeys("Rutvik");
 			driver.findElement(By.cssSelector("input[placeholder='Last Name']")).sendKeys("Panchal");
 			driver.findElement(By.cssSelector("label[tabindex='0']")).click();
 			driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys("1234567890");
 			driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("test@test.com");
-			
-			flightSearchResults.executeMouseClick(
-					driver.findElement(By.cssSelector(".lato-black.button.buttonPrimary.extraPadBtn.fontSize16 ")));
-			flightSearchResults.executeMouseClick(
-					driver.findElement(By.cssSelector(".lato-black.button.buttonPrimary.extraPadBtn.fontSize16 ")));
+
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			flightSearchResults
+					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
+			flightSearchResults
+					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
+
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			flightSearchResults
+					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='CONFIRM']")));
 
 			flightSearchResults.switchToNewTab();
-			
+
+			flightSearchResults.executeMouseClick(
+					driver.findElement(By.cssSelector("span[class='fontSize16 boldFont appendRight20 linkText ']")));
+
+			for (WebElement e : driver
+					.findElements(By.cssSelector("div[style='background-color: rgb(186, 218, 255);']"))) {
+				flightSearchResults.executeMouseClick(e);
+				break;
+			}
+
+			Thread.sleep(2000);
+
+			flightSearchResults
+					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
+			flightSearchResults
+					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='CONTINUE ANYWAY']")));
+
+			flightSearchResults.switchToNewTab();
+			flightSearchResults
+					.executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Proceed to pay']")));
+
 		} else {
 
 		}
 	}
-
-//	@Test(dependsOnMethods = "tc_flight_search01")
-//	public void tc_flight_search05() {
-//		Actions act = new Actions(driver);
-//
-//		driver.findElement(By.cssSelector("span[class='darkText lightFont fontSize14 appendLeft10']")).click();
-//
-//		flightSearchResults.executeMouseClick(driver.findElement(By.cssSelector("button[class='addTravellerBtn']")));
-//
-//		driver.findElement(By.cssSelector("input[placeholder='First & Middle Name']")).sendKeys("Rutvik");
-//		driver.findElement(By.cssSelector("input[placeholder='Last Name']")).sendKeys("Panchal");
-//		driver.findElement(By.cssSelector("label[tabindex='0']")).click();
-//		driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys("1234567890");
-//		driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("test@test.com");
-//
-//		flightSearchResults.executeMouseClick(
-//				driver.findElement(By.cssSelector(".lato-black.button.buttonPrimary.extraPadBtn.fontSize16 ")));
-//		flightSearchResults.executeMouseClick(
-//				driver.findElement(By.cssSelector(".lato-black.button.buttonPrimary.extraPadBtn.fontSize16 ")));
-//
-//		flightSearchResults.switchToNewTab();
-//
-//		act.moveToElement(driver.findElement(By.cssSelector(".button.buttonPrimary.buttonBig.fontSize14"))).click()
-//				.perform();
-//
-//		act.moveToElement(driver.findElement(By.cssSelector(".lato-black.button.buttonPrimary.buttonBig.fontSize12")))
-//				.click().perform();
-//		act.moveToElement(
-//				driver.findElement(By.cssSelector(".lato-black.button.buttonPrimary.extraPadBtn.fontSize16 "))).click()
-//				.perform();
-//		act.moveToElement(
-//				driver.findElement(By.cssSelector(".lato-black.button.buttonPrimary.extraPadBtn.fontSize16 "))).click()
-//				.perform();
-//
-//	}
 }

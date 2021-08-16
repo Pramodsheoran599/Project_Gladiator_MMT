@@ -35,7 +35,7 @@ public class BaseTest
     @AfterTest
     public void afterTest()
     {
-        driver.quit();
+//        driver.quit();
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -71,6 +71,14 @@ public class BaseTest
             return false;
         }
     }
+    
+    public void waitForSeconds(float seconds) {
+		try {
+			Thread.sleep((long) (seconds * 1000));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
 //----------------------------------------------------------------------------------------------------------------------
