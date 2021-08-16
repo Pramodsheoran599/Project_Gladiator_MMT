@@ -21,6 +21,8 @@ public class CreateAccountPage extends BasePage
 
 //----------------------------------------------------------------------------------------------------------------------
 
+    public By getWrongOtpError() { return wrongOtpError; }
+
     public void clickCreate   ()                { driver.findElement(createButton).click(); }
     public void clickSave     ()                { driver.findElement(saveButton).click(); }
     public void enterOTP      (String otp)      { driver.findElement(otp_field).sendKeys(otp); }

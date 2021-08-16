@@ -35,6 +35,7 @@ public class LoginPage extends BasePage
     // Getter Methods
     public By getContinue_button      () { return continueButton; }
     public By getLogin_button         () { return loginButton; }
+    public By getLoginViaPassword     () { return loginViaPassword; }
     public By getInvalidIdError       () { return invalidIdError; }
     public By getInvalidOtpError      () { return invalidOtpError; }
     public By getError                () { return error; }

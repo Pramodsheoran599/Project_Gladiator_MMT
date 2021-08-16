@@ -56,7 +56,7 @@ public class Login_Logout_Tests extends BaseTest
         test.pass("Go to Login Page.");
 
         takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login02.png");
-        
+
         Assert.assertFalse(isElementEnabled(loginPage.getContinue_button()));
         test.pass("Check if Continue Button is Disabled By Default.");
     }
@@ -67,11 +67,11 @@ public class Login_Logout_Tests extends BaseTest
     public void tc_login03()
     {
         test = extentReports.createTest("tc_login03", "To Check Login Feature With Blank Password Entered.");
-        
+
         loginPage = homePage.gotoLoginPage();
         test.pass("Go to Login Page.");
-        
-        loginPage.enterUsername("pramodsheoran599@gmail.com");
+
+        loginPage.enterUsername(object_repository.getProperty("validEmail"));
         loginPage.clickContinue();
         test.pass("Enter Valid Email-ID and Click Continue.");
 
@@ -116,11 +116,11 @@ public class Login_Logout_Tests extends BaseTest
         loginPage = homePage.gotoLoginPage();
         test.pass("Go to Login Page.");
 
-        loginPage.enterUsername("pramodsheoran599@gmail.com");
+        loginPage.enterUsername(object_repository.getProperty("validEmail"));
         loginPage.clickContinue();
         test.pass("Enter Valid Email-ID and Click Continue.");
 
-        loginPage.enterPassword("Pramod@1234");
+        loginPage.enterPassword(object_repository.getProperty("validPassword"));
         loginPage.login();
         test.pass("Enter Valid Password and Click Login.");
 
@@ -140,11 +140,11 @@ public class Login_Logout_Tests extends BaseTest
         loginPage = homePage.gotoLoginPage();
         test.pass("Go to Login Page.");
 
-        loginPage.enterUsername("pramodsheoran599@gmail.com");
+        loginPage.enterUsername(object_repository.getProperty("validEmail"));
         loginPage.clickContinue();
         test.pass("Enter Valid Email-ID and Click Continue.");
 
-        loginPage.enterPassword("Pramod@134");
+        loginPage.enterPassword("Pramod@123");
         loginPage.login();
         test.pass("Enter Invalid Password and Click Login.");
 
@@ -185,15 +185,19 @@ public class Login_Logout_Tests extends BaseTest
         loginPage = homePage.gotoLoginPage();
         test.pass("Go to Login Page.");
 
-        loginPage.enterUsername("7021521142");
+        loginPage.enterUsername(object_repository.getProperty("validMobile"));
+
+        Thread.sleep(5000);
         loginPage.clickContinue();
         test.pass("Enter Valid Mobile Number and Click Continue.");
 
-        Thread.sleep(20000);
-        loginPage.clickLoginViaPassword();
-        test.pass("Click Login Via Password Link.");
+        Thread.sleep(5000);
 
-        loginPage.enterPassword("Pramod@1234");
+        if (isElementDisplayed(loginPage.getLoginViaPassword()))
+            loginPage.clickLoginViaPassword();
+            test.pass("Click Login Via Password Link.");
+
+        loginPage.enterPassword(object_repository.getProperty("validPassword"));
         loginPage.login();
         test.pass("Enter Valid Password and Click Login.");
 
@@ -207,19 +211,20 @@ public class Login_Logout_Tests extends BaseTest
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test (priority = 9, description = "To check Login Feature with Valid Mobile Number and Invalid Password")
-    public void tc_login09()
+    public void tc_login09() throws InterruptedException
     {
         test = extentReports.createTest("tc_login09", "To check Login Feature with Valid Mobile Number and Invalid Password");
 
         loginPage = homePage.gotoLoginPage();
         test.pass("Go to Login Page.");
 
-        loginPage.enterUsername("7021521142");
+        loginPage.enterUsername(object_repository.getProperty("validMobile"));
         loginPage.clickContinue();
         test.pass("Enter Valid Mobile Number and Click Continue.");
 
-        loginPage.clickLoginViaPassword();
-        test.pass("Click Login Via Password Link.");
+        if (isElementDisplayed(loginPage.getLoginViaPassword()))
+            loginPage.clickLoginViaPassword();
+            test.pass("Click Login Via Password Link.");
 
         loginPage.enterPassword("Pramod@134");
         loginPage.login();
@@ -241,7 +246,7 @@ public class Login_Logout_Tests extends BaseTest
         loginPage = homePage.gotoLoginPage();
         test.pass("Go to Login Page.");
 
-        loginPage.enterUsername("7021521142");
+        loginPage.enterUsername(object_repository.getProperty("validMobile"));
         loginPage.clickContinue();
         test.pass("Enter Valid Mobile Number and Click Continue.");
 
@@ -266,7 +271,7 @@ public class Login_Logout_Tests extends BaseTest
         loginPage = homePage.gotoLoginPage();
         test.pass("Go to Login Page.");
 
-        loginPage.enterUsername("7021521142");
+        loginPage.enterUsername(object_repository.getProperty("validMobile"));
         loginPage.clickContinue();
         test.pass("Enter Valid Mobile Number and Click Continue.");
 

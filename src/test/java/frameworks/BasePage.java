@@ -30,7 +30,7 @@ public class BasePage
 
 	protected void waitTillVisibilityOfElement(By element)
 	{
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 3);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(element));
 	}
 

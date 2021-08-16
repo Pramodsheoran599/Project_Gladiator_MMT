@@ -12,30 +12,67 @@ import org.testng.annotations.Test;
 
 public class CreateAccountTests extends BaseTest
 {
-    @Test(description = "To check Account Creation with Valid Email and OTP")
+    @Test(description = "To check Account Creation with Valid Email and Invalid OTP")
     public void tc_signup01() throws InterruptedException
     {
-    	test = extentReports.createTest("tc_signup01", "To SignUp");
-    	
+        test = extentReports.createTest("tc_signup01", "To SignUp");
+
         driver.get(object_repository.getProperty("homepage_url"));
+
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
+
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
 
-        loginPage.enterUsername("potodi3056@alltekia.com");
+        loginPage.enterUsername("fojay74395@hax55.com");
         loginPage.clickContinue();
+        test.pass("Enter Valid Email-ID and Click Continue.");
 
-        Thread.sleep(30000);                        // Wait For manually entering OTP
+        Thread.sleep(10000);
+        createAccountPage.enterOTP("123456");
         createAccountPage.clickCreate();
+        test.pass("Enter OTP and Click Create.");
 
-        createAccountPage.enterFullName("Test");
-        createAccountPage.enterPassword("Test@1234");
-        createAccountPage.clickSave();
+        takeScreenshot(object_repository.getProperty("snapshot.CreateAccount") + "Account created.png");
 
-        Assert.assertTrue(homePage.isUserLoggedIn());
-        
-        takeScreenshot(object_repository.getProperty("snapshot.CreateAccountTests") + "Account created.png");
+        Assert.assertTrue(isElementDisplayed(createAccountPage.getWrongOtpError()));
+        test.pass("Check if Invalid Otp Error is Displayed.");
     }
 
 //----------------------------------------------------------------------------------------------------------------------
+
+    @Test(description = "To check Account Creation with Valid Email and OTP")
+    public void tc_signup02() throws InterruptedException
+    {
+        test = extentReports.createTest("tc_signup01", "To SignUp");
+
+        driver.get(object_repository.getProperty("homepage_url"));
+
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = homePage.gotoLoginPage();
+        test.pass("Go to Login Page.");
+
+        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
+
+        loginPage.enterUsername("fojay74395@hax55.com");
+        loginPage.clickContinue();
+        test.pass("Enter Valid Email-ID and Click Continue.");
+
+        Thread.sleep(30000);                        // Wait For manually entering OTP
+        createAccountPage.clickCreate();
+        test.pass("Enter OTP and Click Create.");
+
+        createAccountPage.enterFullName("Test");
+        createAccountPage.enterPassword("Test@1234");
+        test.pass("Enter Full Name and Password.");
+
+        createAccountPage.clickSave();
+        test.pass("Click Save.");
+
+        takeScreenshot(object_repository.getProperty("snapshot.CreateAccount") + "Account created.png");
+
+        Assert.assertTrue(homePage.isUserLoggedIn());
+        test.pass("Check if User Logged In.");
+    }
 }
