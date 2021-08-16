@@ -36,7 +36,8 @@ public class FlightMultiCityTests extends BaseTest {
     @Test
     public void tc_multicity_flight_select02() 
     {
-    	
+    	test = extentReports.createTest("tc_multicity_flight_select02",
+    			"To test flights search with same arrival and departure  destination");
         driver.get(object_repository.getProperty("homepage_url"));
         search = new Search(driver);
 
