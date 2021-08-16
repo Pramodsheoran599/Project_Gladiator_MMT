@@ -187,11 +187,8 @@ public class Login_Logout_Tests extends BaseTest
 
         loginPage.enterUsername(object_repository.getProperty("validMobile"));
 
-        Thread.sleep(5000);
         loginPage.clickContinue();
         test.pass("Enter Valid Mobile Number and Click Continue.");
-
-        Thread.sleep(5000);
 
         if (isElementDisplayed(loginPage.getLoginViaPassword()))
             loginPage.clickLoginViaPassword();
@@ -211,7 +208,7 @@ public class Login_Logout_Tests extends BaseTest
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test (priority = 9, description = "To check Login Feature with Valid Mobile Number and Invalid Password")
-    public void tc_login09() throws InterruptedException
+    public void tc_login09()
     {
         test = extentReports.createTest("tc_login09", "To check Login Feature with Valid Mobile Number and Invalid Password");
 
@@ -264,7 +261,7 @@ public class Login_Logout_Tests extends BaseTest
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test (priority = 11, description = "To check Login Feature with Valid Mobile Number and Invalid OTP")
-    public void tc_login11()
+    public void tc_login11() throws InterruptedException
     {
         test = extentReports.createTest("tc_login11", "To check Login Feature with Valid Mobile Number and Invalid OTP");
 
@@ -274,6 +271,10 @@ public class Login_Logout_Tests extends BaseTest
         loginPage.enterUsername(object_repository.getProperty("validMobile"));
         loginPage.clickContinue();
         test.pass("Enter Valid Mobile Number and Click Continue.");
+
+        Thread.sleep(40000);
+        if(isElementDisplayed(loginPage.getLoginViaOtp()))
+            loginPage.clickLoginViaOtp();
 
         loginPage.enterOTP("12356");
         loginPage.login();
@@ -331,7 +332,7 @@ public class Login_Logout_Tests extends BaseTest
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test (dependsOnMethods = "tc_login05", description = "To check if Logout happens or not")
-    public void tc_logout01()
+    public void tc_logout01() throws InterruptedException
     {
         test = extentReports.createTest("tc_logout01", "To check if Logout happens or not");
 

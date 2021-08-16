@@ -86,7 +86,7 @@ public class FlightOneWayTripTests extends BaseTest {
 			driver.findElement(By.cssSelector("input[placeholder='First & Middle Name']")).sendKeys("Abhinash");
 			driver.findElement(By.cssSelector("input[placeholder='Last Name']")).sendKeys("Malakar");
 			driver.findElement(
-					By.xpath("//*[@id=\"wrapper_ADULT\"]/div[2]/div[2]/div/div[2]/div/div/div[3]/div/div/label[1]"))
+							By.xpath("//*[@id=\"wrapper_ADULT\"]/div[2]/div[2]/div/div[2]/div/div/div[3]/div/div/label[1]"))
 					.click();
 
 			driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys("12345678");
@@ -114,12 +114,12 @@ public class FlightOneWayTripTests extends BaseTest {
 	public void tc_flight_traveller01() throws Exception {
 		test = extentReports.createTest("tc_flight_traveller01", "To test review without selecting any add-ons");
 
-		
+
 		if (isReviewDetail) {
 			flightSearchResults.jsClick(
 					driver.findElement(By.cssSelector("span[class='darkText lightFont fontSize14 appendLeft10']")));
 			waitForSeconds(2);
-			
+
 			test.pass("Insurance Option is Opted.");
 
 			flightSearchResults.waitTillVisibilityOfElement(By.cssSelector("button[class='addTravellerBtn']"));
@@ -132,7 +132,7 @@ public class FlightOneWayTripTests extends BaseTest {
 			driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys("1234567890");
 			driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("test@test.com");
 			waitForSeconds(2);
-			
+
 			test.pass("Traveller Details entered.");
 
 			flightSearchResults.waitForElementTobeClickable(
@@ -144,15 +144,15 @@ public class FlightOneWayTripTests extends BaseTest {
 
 			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='CONFIRM']")));
 			flightSearchResults.switchToNewTab();
-			
+
 			test.pass("Flight Booking is done after valid details input.");
 			takeScreenshot(
 					object_repository.getProperty("snapshot.FlightOneWayTripTests") + "ValidFlightBooking.png");
-			
+
 			test = extentReports.createTest("tc_flight_seats01", "To test flight seat selection");
 
-			
-			
+
+
 			flightSearchResults.jsClick(
 					driver.findElement(By.cssSelector("span[class='fontSize16 boldFont appendRight20 linkText ']")));
 
@@ -171,7 +171,7 @@ public class FlightOneWayTripTests extends BaseTest {
 
 			flightSearchResults.switchToNewTab();
 			flightSearchResults.jsClick(driver.findElement(By.xpath("//button[normalize-space()='Proceed to pay']")));
-			
+
 			test.pass("Proceed to Pay Clicked.");
 			test.pass("Flight Booked.");
 			takeScreenshot(

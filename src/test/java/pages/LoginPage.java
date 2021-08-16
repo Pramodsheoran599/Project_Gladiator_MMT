@@ -23,6 +23,7 @@ public class LoginPage extends BasePage
     By loginButton      = object_repository.getLocator ("loginPage.loginButton");
 
     By loginViaPassword = object_repository.getLocator ("loginPage.loginViaPassword");
+    By loginViaOtp      = object_repository.getLocator ("loginPage.loginViaOTP");
 
     By invalidIdError   = object_repository.getLocator("loginPage.invalidIdError");
     By invalidOtpError  = object_repository.getLocator("loginPage.invalidOTP");
@@ -36,6 +37,7 @@ public class LoginPage extends BasePage
     public By getContinue_button      () { return continueButton; }
     public By getLogin_button         () { return loginButton; }
     public By getLoginViaPassword     () { return loginViaPassword; }
+    public By getLoginViaOtp          () { return loginViaOtp; }
     public By getInvalidIdError       () { return invalidIdError; }
     public By getInvalidOtpError      () { return invalidOtpError; }
     public By getError                () { return error; }
@@ -80,7 +82,7 @@ public class LoginPage extends BasePage
 
     public void enterOTP(String otp)
     {
-        waitTillVisibilityOfElement(otpField);
+//        waitTillVisibilityOfElement(otpField);
         driver.findElement(otpField).sendKeys(otp);
     }
 
@@ -89,6 +91,13 @@ public class LoginPage extends BasePage
     public void clickLoginViaPassword()
     {
         driver.findElement(loginViaPassword).click();
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    public void clickLoginViaOtp()
+    {
+        driver.findElement(loginViaOtp).click();
     }
 
 //----------------------------------------------------------------------------------------------------------------------

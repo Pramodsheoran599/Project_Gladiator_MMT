@@ -57,11 +57,12 @@ public class HomePage extends BasePage
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    public void logout()
+    public void logout() throws InterruptedException
     {
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(hey_username)).perform();
         action.moveToElement(driver.findElement(my_profile)).click().perform();
+        Thread.sleep(2000);
         action.moveToElement(driver.findElement(new ProfilePage().logout_button)).click().perform();
     }
 
@@ -76,7 +77,6 @@ public class HomePage extends BasePage
 
     public void goto_hotels_page()
     {
-
         try
         {
             if (driver.findElement(By.cssSelector("div[class='autopop__wrap makeFlex column defaultCursor']")).isDisplayed())
@@ -89,6 +89,5 @@ public class HomePage extends BasePage
             driver.findElement(hotels_button).click();
         }
     }
-
 }
 //----------------------------------------------------------------------------------------------------------------------
