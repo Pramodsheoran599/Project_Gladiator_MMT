@@ -2,6 +2,14 @@
 LTI Project Gladiator Team 10
 
 **InScope:**
+
+      
+      ------------- |
+      Content Cell  |
+      Content Cell  |
+
+
+
       1. Login / Logout
       2. Create Account
       3. Hotel Search
