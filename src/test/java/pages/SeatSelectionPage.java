@@ -19,10 +19,16 @@ public class SeatSelectionPage extends BasePage {
 	}
 
 	public void selectSeat() {
-		for (WebElement e : driver.findElements(By.cssSelector("div[style='background-color: rgb(186, 218, 255);']"))) {
-			executeMouseClick(e);
-			break;
+		try {
+			jsClick(driver.findElement(By.xpath("//button[normalize-space()='Yes, Please']")));
+			executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Yes, Please']")));
+		} catch (Exception ex) {
+			for (WebElement e : driver.findElements(By.cssSelector("div[style='background-color: rgb(186, 218, 255);']"))) {
+				executeMouseClick(e);
+				break;
+			}
 		}
+		
 	}
 	
 	public void clickContinue() {
@@ -32,6 +38,5 @@ public class SeatSelectionPage extends BasePage {
 	
 	public void proceedToPay() {
 		jsClick(driver.findElement(By.xpath("//button[normalize-space()='Proceed to pay']")));
-
 	}
 }

@@ -19,11 +19,6 @@ public class ReviewBookingPage extends BasePage {
 	By travellerMale = By.cssSelector("label[tabindex='0']");
 
 	public void clickOnContinue() {
-//		waitForElementTobeClickable(driver.findElement(continueButton));
-//		jsClick(driver.findElement(continueButton));
-//		jsClick(driver.findElement(continueButton));
-//		executeMouseClick(driver.findElement(continueButton));
-
 		waitForElementTobeClickable(driver.findElement(continueButton));
 		executeMouseClick(driver.findElement(continueButton));
 		jsClick(driver.findElement(continueButton));
