@@ -23,7 +23,7 @@ public class NewHotel extends BaseTest
 //----------------------------------------------------------------------------------------------------------------------
     
     @Test(priority=1 , description="Home page should be displayed")			//for Searching Page
-    public void tc_hotel_search01() throws Exception
+    public void tc_hotel_search01()
     {
     	test = extentReports.createTest("tc_hotel_search01", "To go to Hotel Booking Page");
     	
@@ -37,7 +37,7 @@ public class NewHotel extends BaseTest
 //----------------------------------------------------------------------------------------------------------------------    
     
     @Test(priority=2, description="Hotels page should be displayed")		//for filling details Page
-    public void tc_hotel_search02() throws Exception
+    public void tc_hotel_search02()
     {
     	test = extentReports.createTest("tc_hotel_search02", "To fill the Hotel Booking details");
     	

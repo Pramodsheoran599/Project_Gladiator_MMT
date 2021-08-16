@@ -24,6 +24,87 @@ public class EndToEnd_HotelBooking extends BaseTest
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test
+    public void endToEndHotelBooking() throws InterruptedException
+    {
+        test = extentReports.createTest("endToEndHotelBooking", "To Check End-To-End Hotel Booking Feature");
+
+        test.info("Opening Make My Trip Website.");
+        driver.get(object_repository.getProperty("homepage_url"));
+        homePage = new HomePage(driver);
+
+        test.info("Going to Login Page.");
+        loginPage = homePage.gotoLoginPage();
+
+        test.info("Entering Valid Email-ID and Clicking Continue.");
+        loginPage.enterUsername("pramodsheoran599@gmail.com");
+        loginPage.clickContinue();
+
+        test.info("Entering Valid Password and Clicking Login.");
+        loginPage.enterPassword("Pramod@1234");
+        loginPage.login();
+
+        test.info("Checking if User is Logged in.");
+        Assert.assertTrue(homePage.isUserLoggedIn());
+
+
+        test.info("Going to Hotels Page.");
+        hotelPage = new HotelPage(driver);
+        homePage.goto_hotels_page();
+
+        test.info("Selecting Area for the Hotel.");
+        hotelPage.selectFromArea();
+        hotelPage.searchFromArea("Goa");
+
+        test.info("Selecting Check-In Date.");
+        hotelPage.select_check_in_date();
+        hotelPage.selectDates("17-08-2021");
+
+        test.info("Selecting Check-Out Date.");
+        hotelPage.select_check_out_date();
+        hotelPage.selectDates("20-08-2021");
+
+        test.info("Selecting Number of Guests.");
+        hotelPage.select_number_of_guests();
+        hotelPage.searchadult_count();
+        hotelPage.click_it();
+
+        test.info("Clicking on Search Hotels.");
+        hotelPage.searchHotels();
+
+        test.info("Clicking on the first Hotel.");
+        driver.findElement(By.id("Listing_hotel_1")).click();
+
+        Set<String> Win = driver.getWindowHandles();
+        List<String> allWin = new ArrayList<>(Win);
+
+        test.info("Switching to first Hotel's Details Page.");
+        driver.switchTo().window(allWin.get(1));
+
+        test.info("Clicking on Book Now Button.");
+        Thread.sleep(20000);
+        driver.findElement(By.id("detpg_headerright_book_now")).click();
+
+        Thread.sleep(5000);
+
+        test.info("Entering User's Title.");
+        WebElement E = driver.findElement(By.id("title"));
+        Select title = new Select(E);
+        title.selectByVisibleText("Mr");
+
+        test.info("Entering User Details.");
+        driver.findElement(By.id("fName")).sendKeys("Pramod");
+        driver.findElement(By.id("lName")).sendKeys("Sheoran");
+//        driver.findElement(By.id("email")).sendKeys("pramodsheoran599@gmail.com");
+        driver.findElement(By.id("mNo")).sendKeys("7021521142");
+
+        test.info("Clicking on Pay Now Button.");
+        driver.findElement(By.linkText("PAY NOW")).click();
+
+        Thread.sleep(5000);
+    }
+
+
+    @Test
     public void loginViaGoogle() throws InterruptedException
     {
         driver.get(object_repository.getProperty("homepage_url"));
@@ -51,10 +132,6 @@ public class EndToEnd_HotelBooking extends BaseTest
         Thread.sleep(5000);
         driver.switchTo().window(parentWindowId);
         Assert.assertTrue(homePage.isUserLoggedIn());
-
-
-        if (driver.findElement(By.xpath("//*[@id=\"SW\"]/div[1]/div[2]/div[2]/section")).isDisplayed())
-            driver.findElement(By.cssSelector("span[data-cy=\"modalClose\"]")).click();
 
         hotelPage = new HotelPage(driver);
         homePage  = new HomePage(driver);

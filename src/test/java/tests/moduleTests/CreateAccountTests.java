@@ -14,22 +14,6 @@ import com.aventstack.extentreports.ExtentTest;
 
 public class CreateAccountTests extends BaseTest
 {
-	
-	ExtentTest tc;
-	
-//----------------------------------------------------------------------------------------------------------------------	
-	
-	  @Test
-		public void report()
-		{
-
-		}
-	   
-//----------------------------------------------------------------------------------------------------------------------
-
-
-//    @Test (description = "To check Create account fe")
-
     @Test(description = "To check Account Creation with Valid Email and OTP")
     public void tc_signup01() throws InterruptedException
     {
@@ -49,10 +33,6 @@ public class CreateAccountTests extends BaseTest
         createAccountPage.clickSave();
 
         Assert.assertTrue(homePage.isUserLoggedIn());
-        
-        tc=extentReports.createTest("tc_signup01");
-  	  	tc.info("valid creds");
-  	  
     }
 
 //----------------------------------------------------------------------------------------------------------------------

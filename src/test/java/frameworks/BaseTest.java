@@ -1,24 +1,24 @@
 package frameworks;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import java.util.concurrent.TimeUnit;
-
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-
 
 //----------------------------------------------------------------------------------------------------------------------
 
