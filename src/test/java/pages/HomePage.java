@@ -30,6 +30,7 @@ public class HomePage extends BasePage
     {
         try
         {
+            // If Initial Login PopUp Appears then go through that popUp else go normally
             if (driver.findElement(By.cssSelector("div[class='autopop__wrap makeFlex column defaultCursor']")).isDisplayed())
                 driver.findElement(object_repository.getLocator("homepage.loginPopup.login")).click();
         }

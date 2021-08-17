@@ -1,14 +1,21 @@
 package tests.endtoEndTests;
 
 import frameworks.BaseTest;
+
+import pages.HomePage;
+import pages.LoginPage;
+import pages.SearchFlightsPage;
+import pages.CompleteYourFlightBooking;
+
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+
+//----------------------------------------------------------------------------------------------------------------------
 
 public class EndToEnd_FlightBooking extends BaseTest
 {
@@ -41,6 +48,8 @@ public class EndToEnd_FlightBooking extends BaseTest
 
         takeScreenshot(object_repository.getProperty("snapshot.EndToEnd.Flight_Booking") + "1. Login.png");
 
+//----------------------------------------------------------------------------------------------------------------------
+
         // Close to Verify your Phone number pop-up
         try
         {
@@ -69,6 +78,8 @@ public class EndToEnd_FlightBooking extends BaseTest
 
         takeScreenshot(object_repository.getProperty("snapshot.EndToEnd.Flight_Booking") + "2. Flight Search");
 
+//----------------------------------------------------------------------------------------------------------------------
+
         searchFlightsPage.search();
 
         if (isElementDisplayed(object_repository.getLocator("searchedFlights.popUp")))
@@ -89,6 +100,8 @@ public class EndToEnd_FlightBooking extends BaseTest
                 test.pass("Switch to Complete Your Booking Window.");
             }
         }
+
+//----------------------------------------------------------------------------------------------------------------------
 
         CompleteYourFlightBooking completeBooking = new CompleteYourFlightBooking(driver);
 
@@ -129,7 +142,6 @@ public class EndToEnd_FlightBooking extends BaseTest
         Thread.sleep(5000);
 
         Assert.assertTrue(driver.getCurrentUrl().contains("checkout"));
-
         takeScreenshot(object_repository.getProperty("snapshot.EndToEnd.Flight_Booking") + "5. Checkout.png");
     }
 }

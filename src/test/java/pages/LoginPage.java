@@ -82,7 +82,6 @@ public class LoginPage extends BasePage
 
     public void enterOTP(String otp)
     {
-//        waitTillVisibilityOfElement(otpField);
         driver.findElement(otpField).sendKeys(otp);
     }
 
