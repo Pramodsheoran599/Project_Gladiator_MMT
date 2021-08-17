@@ -1,6 +1,5 @@
 package pages;
 
-import com.aventstack.extentreports.reporter.configuration.Theme;
 import frameworks.BasePage;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
