@@ -15,16 +15,18 @@ public class CompleteYourFlightBooking extends BasePage
     }
 
     By insurance    = object_repository.getLocator("completeBooking.insurance");
-    By promoCode    = object_repository.getLocator("completeBooking.promoCode");
     By addTraveller = object_repository.getLocator("completeBooking.addTraveller");
     By traveller_firstMiddleName = object_repository.getLocator("completeBooking.traveller_firstMiddleName");
     By traveller_lastName = object_repository.getLocator("completeBooking.traveller_lastName");
     By travellerAdultMale     = object_repository.getLocator("completeBooking.travellerAdultMale");
     By travellerChildMale     = object_repository.getLocator("completeBooking.travellerChildMale");
     By continueButton = object_repository.getLocator("completeBooking.continueButton");
+    By continueToPayment = object_repository.getLocator("completeBooking.continueToPayment");
     By confirmButton = object_repository.getLocator("completeBooking.confirmButton");
     By checkBox = object_repository.getLocator("completeBooking.allCheckBoxes");
     By payButton = object_repository.getLocator("completeBooking.proceedToPay");
+
+//----------------------------------------------------------------------------------------------------------------------
 
     public void addInsurance() throws InterruptedException
     {
@@ -33,6 +35,7 @@ public class CompleteYourFlightBooking extends BasePage
         findElement(insurance).click();
     }
 
+//----------------------------------------------------------------------------------------------------------------------
     public void addTravellers(List<String> adults, List<String> children) throws InterruptedException
     {
         scrollPageVertically(100);
@@ -55,18 +58,27 @@ public class CompleteYourFlightBooking extends BasePage
         driver.findElement(By.className("travellerListText")).click();
     }
 
+    //----------------------------------------------------------------------------------------------------------------------
     public void clickContinue()
     {
         findElement(continueButton).click();
     }
+
+    public void continuePayment()
+    {
+        findElement(continueToPayment).click();
+        findElement(By.className("reviewAddonsBtn")).click();
+    }
+
 
     public void clickConfirm()
     {
         findElement(confirmButton).click();
     }
 
-    public void airportPickupAndDrop()
+    public void airportPickupAndDrop() throws InterruptedException
     {
+        Thread.sleep(4000);
         List<WebElement> allCheckBoxes = driver.findElements(checkBox);
 
         for (WebElement checkbox : allCheckBoxes)

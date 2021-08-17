@@ -46,6 +46,7 @@ public class SeatSelectionPage extends BasePage {
 	}
 
 	public void proceedToPay() {
+		findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[4]/div/div/div[3]/span")).click();
 		jsClick(driver.findElement(By.xpath("//button[normalize-space()='Proceed to pay']")));
 	}
 }

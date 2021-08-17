@@ -37,7 +37,8 @@ public class FlightOneWayTripTests extends BaseTest {
 	}
 
 	@Test(dependsOnMethods = "tc_flight_search02", description = "To Test if flights are available")
-	public void tc_flight_search01() {
+	public void tc_flight_search01() throws InterruptedException
+	{
 		test = extentReports.createTest("tc_flight_search01", "To Test if flights are available");
 		String fromCity = "Mumbai";
 		String toCity = "Delhi";
@@ -45,6 +46,7 @@ public class FlightOneWayTripTests extends BaseTest {
 		search.searchOneWayTripFlights(fromCity, toCity, date);
 		test.pass("Source, Destination City and Date entered.");
 
+		Thread.sleep(4000);
 		flightSearchResults = new FlightSearchResultsPage(driver);
 		Assert.assertTrue(flightSearchResults.getCountOfFlights() > 0);
 		test.pass("Flight search Success.");
