@@ -25,12 +25,13 @@ public class CreateAccountTests extends BaseTest
 
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
 
-        loginPage.enterUsername("fojay74395@hax55.com");
+        // Temp Mail Website is Used to Generate a new Disposable Email-ID for Testing Purpose.
+        loginPage.enterUsername("jopegas48755@cytsl.com");
         loginPage.clickContinue();
         test.pass("Enter Valid Email-ID and Click Continue.");
 
-        Thread.sleep(10000);
         createAccountPage.enterOTP("123456");
+        Thread.sleep(1000);
         createAccountPage.clickCreate();
         test.pass("Enter OTP and Click Create.");
 
@@ -55,7 +56,8 @@ public class CreateAccountTests extends BaseTest
 
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
 
-        loginPage.enterUsername("fojay74395@hax55.com");
+        // Temp Mail Website is Used to Generate a new Disposable Email-ID for Testing Purpose.
+        loginPage.enterUsername("yigefi3431@alltekia.com");
         loginPage.clickContinue();
         test.pass("Enter Valid Email-ID and Click Continue.");
 

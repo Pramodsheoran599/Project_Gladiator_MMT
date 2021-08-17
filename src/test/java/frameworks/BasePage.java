@@ -53,6 +53,12 @@ public class BasePage {
 		js.executeScript("window.scrollBy(0," + pixels + ")");
 	}
 
+
+
+	public void scrollTillElement(By loactor) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", findElement(loactor));
+	}
+
 //----------------------------------------------------------------------------------------------------------------------
 
 	public void switchToNewTab() {

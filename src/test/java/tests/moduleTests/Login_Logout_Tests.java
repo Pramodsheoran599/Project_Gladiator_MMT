@@ -247,7 +247,7 @@ public class Login_Logout_Tests extends BaseTest
         loginPage.clickContinue();
         test.pass("Enter Valid Mobile Number and Click Continue.");
 
-        Thread.sleep(30000);
+        Thread.sleep(30000);            // Waiting to Manually Enter OTP
         loginPage.login();
         test.pass("Waiting for Manual Input of OTP and then Click Login.");
 
@@ -261,7 +261,7 @@ public class Login_Logout_Tests extends BaseTest
 //----------------------------------------------------------------------------------------------------------------------
 
     @Test (priority = 11, description = "To check Login Feature with Valid Mobile Number and Invalid OTP")
-    public void tc_login11() throws InterruptedException
+    public void tc_login11()
     {
         test = extentReports.createTest("tc_login11", "To check Login Feature with Valid Mobile Number and Invalid OTP");
 
@@ -272,7 +272,6 @@ public class Login_Logout_Tests extends BaseTest
         loginPage.clickContinue();
         test.pass("Enter Valid Mobile Number and Click Continue.");
 
-        Thread.sleep(40000);
         if(isElementDisplayed(loginPage.getLoginViaOtp()))
             loginPage.clickLoginViaOtp();
 
@@ -314,15 +313,17 @@ public class Login_Logout_Tests extends BaseTest
         }
 
         driver.findElement(By.id("identifierId")).sendKeys("mmt.project.team@gmail.com");
-        driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
+        driver.findElement(object_repository.getLocator("googlePage.loginNext")).click();
         driver.findElement(By.name("password")).sendKeys("Project@Team10");
+
         Thread.sleep(1000);
-        driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span")).click();
+        driver.findElement(object_repository.getLocator("googlePage.passNext")).click();
         test.pass("Enter Valid Google Email, Password and Logging in.");
 
         driver.switchTo().window(parentWindowId);
         test.pass("Switching Back to Make My Trip Window.");
 
+        Thread.sleep(5000);
         takeScreenshot(object_repository.getProperty("snapshot.module.login") + "tc_login12.png");
 
         Assert.assertTrue(homePage.isUserLoggedIn());

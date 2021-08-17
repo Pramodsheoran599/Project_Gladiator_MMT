@@ -51,6 +51,7 @@ public class HomePage extends BasePage
             return driver.findElement(hey_username).isDisplayed();
         }
         catch (Exception e) {
+            System.out.println("Hey Username button not found");
             return false;
         }
     }

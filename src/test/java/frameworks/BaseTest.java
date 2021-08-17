@@ -37,9 +37,7 @@ public class BaseTest {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		extentReports = new ExtentReports();
-		extentReports.attachReporter(new ExtentHtmlReporter("test.html"));
-		extentReports.attachReporter(new ExtentHtmlReporter("NewHotel.html"));
-		extentReports.attachReporter(new ExtentHtmlReporter("CreateAccountTests.html"));
+		extentReports.attachReporter(new ExtentHtmlReporter(object_repository.getProperty("reportsPath") + "End-End_Hotel.html"));
 	}
 
 //----------------------------------------------------------------------------------------------------------------------
