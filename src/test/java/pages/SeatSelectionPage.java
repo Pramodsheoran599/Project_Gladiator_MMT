@@ -18,24 +18,33 @@ public class SeatSelectionPage extends BasePage {
 		jsClick(driver.findElement(continuePopUp));
 	}
 
+	public void handleWebCheckInPopUp() {
+		try {
+			jsClick(driver.findElement(By.xpath("//button[normalize-space()='OKAY']")));			
+			executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='OKAY']")));
+		} catch (Exception ex) {
+		}
+	}
+
 	public void selectSeat() {
 		try {
 			jsClick(driver.findElement(By.xpath("//button[normalize-space()='Yes, Please']")));
 			executeMouseClick(driver.findElement(By.xpath("//button[normalize-space()='Yes, Please']")));
 		} catch (Exception ex) {
-			for (WebElement e : driver.findElements(By.cssSelector("div[style='background-color: rgb(186, 218, 255);']"))) {
+			for (WebElement e : driver
+					.findElements(By.cssSelector("div[style='background-color: rgb(186, 218, 255);']"))) {
 				executeMouseClick(e);
 				break;
 			}
 		}
-		
+
 	}
-	
+
 	public void clickContinue() {
 		jsClick(driver.findElement(By.xpath("//button[normalize-space()='Continue']")));
 		jsClick(driver.findElement(By.xpath("//button[normalize-space()='CONTINUE ANYWAY']")));
 	}
-	
+
 	public void proceedToPay() {
 		jsClick(driver.findElement(By.xpath("//button[normalize-space()='Proceed to pay']")));
 	}

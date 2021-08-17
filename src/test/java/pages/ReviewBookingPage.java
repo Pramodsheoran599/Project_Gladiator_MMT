@@ -12,11 +12,14 @@ public class ReviewBookingPage extends BasePage {
 	}
 
 	By continueButton = object_repository.getLocator("reviewBooking.continueButton");
-	By optInsuranceRadio = By.cssSelector("span[class='darkText lightFont fontSize14 appendLeft10']");
-	By addTravellerButton = By.cssSelector("button[class='addTravellerBtn']");
-	By firstNameInput = By.cssSelector("input[placeholder='First & Middle Name']");
-	By lastNameInput = By.cssSelector("input[placeholder='Last Name']");
-	By travellerMale = By.cssSelector("label[tabindex='0']");
+	By optInsuranceRadio = object_repository.getLocator("reviewBooking.optInsuranceRadio");
+	By addTravellerButton = object_repository.getLocator("reviewBooking.addTravellerButton");
+	By firstNameInput = object_repository.getLocator("reviewBooking.firstNameInput");
+	By lastNameInput = object_repository.getLocator("reviewBooking.lastNameInput");
+	By travellerMale = object_repository.getLocator("reviewBooking.travellerMale");
+	By mobileNoInput = object_repository.getLocator("reviewBooking.mobileNoInput");
+	By emailInput = object_repository.getLocator("reviewBooking.emailInput");
+	By confirmButton = object_repository.getLocator("reviewBooking.confirmButton");
 
 	public void clickOnContinue() {
 		waitForElementTobeClickable(driver.findElement(continueButton));
@@ -41,11 +44,11 @@ public class ReviewBookingPage extends BasePage {
 	}
 
 	public void addTravellerContactDetails(String phoneNo, String email) {
-		driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys(phoneNo);
-		driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys(email);
+		driver.findElement(mobileNoInput).sendKeys(phoneNo);
+		driver.findElement(emailInput).sendKeys(email);
 	}
 
 	public void confirmBooking() {
-		jsClick(driver.findElement(By.xpath("//button[normalize-space()='CONFIRM']")));
+		jsClick(driver.findElement(confirmButton));
 	}
 }

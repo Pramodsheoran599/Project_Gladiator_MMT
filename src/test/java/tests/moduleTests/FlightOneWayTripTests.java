@@ -1,7 +1,6 @@
 package tests.moduleTests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -42,7 +41,7 @@ public class FlightOneWayTripTests extends BaseTest {
 		test = extentReports.createTest("tc_flight_search01", "To Test if flights are available");
 		String fromCity = "Mumbai";
 		String toCity = "Delhi";
-		String date = "25-08-2021";
+		String date = "23-08-2021";
 		search.searchOneWayTripFlights(fromCity, toCity, date);
 		test.pass("Source, Destination City and Date entered.");
 
@@ -87,33 +86,7 @@ public class FlightOneWayTripTests extends BaseTest {
 			flightSearchResults.executeMouseClick(driver
 					.findElement(By.xpath("//button[class='fli_primary_btn btn text-uppercase continue_cta']']")));
 
-			Thread.sleep(4000);
-			driver.findElement(By.cssSelector("button[class='addTravellerBtn']")).click();
-			Thread.sleep(4000);
-			driver.findElement(By.cssSelector("input[placeholder='First & Middle Name']")).sendKeys("Abhinash");
-			driver.findElement(By.cssSelector("input[placeholder='Last Name']")).sendKeys("Malakar");
-			driver.findElement(
-					By.xpath("//*[@id=\"wrapper_ADULT\"]/div[2]/div[2]/div/div[2]/div/div/div[3]/div/div/label[1]"))
-					.click();
-
-			driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys("12345678");
-			driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("abc@gmail.com");
-
-			flightSearchResults
-					.executeMouseClick(driver.findElement(By.xpath("//*[@id=\"mainSection_0\"]/div[6]/button")));
-			driver.findElement(By.xpath("//*[@id=\"mainSection_0\"]/div[6]/button")).click();
-			driver.findElement(By.cssSelector("button[class='button buttonPrimary buttonBig fontSize14']")).click();
-
-			waitForSeconds(5);
-			if (driver.findElement(By.cssSelector("span[class='fontSize16 linkText']")).isDisplayed())
-				driver.findElement(By.cssSelector("span[class='fontSize16 linkText']")).click();
-
-			waitForSeconds(3);
-
-			driver.findElement(By.cssSelector("span[class='linkText ']")).click();
 			waitForSeconds(4);
-			driver.findElement(By.cssSelector("button[class='lato-black button buttonPrimary extraPadBtn fontSize16']"))
-					.click();
 		}
 	}
 
@@ -140,7 +113,18 @@ public class FlightOneWayTripTests extends BaseTest {
 			test.pass("Flight Booking is done after valid details input.");
 			takeScreenshot(object_repository.getProperty("snapshot.FlightOneWayTripTests") + "ValidFlightBooking.png");
 		} else {
+			driver.findElement(By.cssSelector("button[class='addTravellerBtn']")).click();
+			waitForSeconds(4);
+			driver.findElement(By.cssSelector("input[placeholder='First & Middle Name']")).sendKeys("Abhinash");
+			driver.findElement(By.cssSelector("input[placeholder='Last Name']")).sendKeys("Malakar");
+			driver.findElement(
+					By.xpath("//*[@id=\"wrapper_ADULT\"]/div[2]/div[2]/div/div[2]/div/div/div[3]/div/div/label[1]"))
+					.click();
+
+			driver.findElement(By.cssSelector("input[placeholder='Mobile No']")).sendKeys("12345678");
+			driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("abc@gmail.com");
 		}
+		Assert.assertTrue(driver.getCurrentUrl().contains("review"));
 	}
 
 	@Test(dependsOnMethods = "tc_flight_traveller01", description = "To test flight search issue")
@@ -148,21 +132,39 @@ public class FlightOneWayTripTests extends BaseTest {
 		if (isReviewDetail) {
 			test = extentReports.createTest("tc_flight_seats01", "To test flight seat selection");
 			seatSelectionPage = new SeatSelectionPage(driver);
+			waitForSeconds(2);
+			seatSelectionPage.handleWebCheckInPopUp();
 //			seatSelectionPage.clickContinuePopUp();
 			seatSelectionPage.selectSeat();
 			test.pass("Seat selected.");
 
 			waitForSeconds(2);
-			seatSelectionPage.clickContinue();
-
+			try {
+				seatSelectionPage.clickContinue();
+			}
+			catch(Exception e) {
+				seatSelectionPage.handleWebCheckInPopUp();
+			}
+			seatSelectionPage.handleWebCheckInPopUp();
 			seatSelectionPage.proceedToPay();
 			seatSelectionPage.switchToNewTab();
-
+//			Assert.assertTrue(driver.getCurrentUrl().contains("payment"));
 			test.pass("Proceed to Pay Clicked.");
 			test.pass("Flight Booked.");
 			takeScreenshot(object_repository.getProperty("snapshot.FlightOneWayTripTests") + "FlightSeatSelection.png");
 		} else {
-
+			flightSearchResults
+					.executeMouseClick(driver.findElement(By.xpath("//*[@id=\"mainSection_0\"]/div[6]/button")));
+			driver.findElement(By.xpath("//*[@id=\"mainSection_0\"]/div[6]/button")).click();
+			driver.findElement(By.cssSelector("button[class='button buttonPrimary buttonBig fontSize14']")).click();
+			waitForSeconds(5);
+			if (driver.findElement(By.cssSelector("span[class='fontSize16 linkText']")).isDisplayed())
+				driver.findElement(By.cssSelector("span[class='fontSize16 linkText']")).click();
+			waitForSeconds(3);
+			driver.findElement(By.cssSelector("span[class='linkText ']")).click();
+			waitForSeconds(4);
+			driver.findElement(By.cssSelector("button[class='lato-black button buttonPrimary extraPadBtn fontSize16']"))
+					.click();
 		}
 	}
 }
